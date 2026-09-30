@@ -13,467 +13,59 @@ function scr_game_text(_text_id)
 	switch (_text_id)
 	{
 		case "self_1":
-			scr_obj_spawn_after_textbox(obj_queen, 660, 300, "Instances");
-			scr_char_move_after_textbox(obj_queen, spr_queen_walk_down, true, 0, 4, 1, 15);
+			scr_text("* How Do You Like Your Smoothie", "queen");
+			scr_text("* It's good...", "lancer");
 		break;
 		
 		case "self_2":
-		    scr_text("* What did you guys talk about?", "lancer", 2);
-		        scr_obj_sprite_on_page(obj_queen, spr_queen_walk_left, false);
-		        scr_obj_sprite_on_page(obj_lancer, spr_lancer_right, false);
-		    scr_text("* Uh", "queen", 9);
-		    scr_text("* Taxes", "queen", 20);
-		    scr_text("* I love taxes!", "lancer", 3);
-		    scr_text("* ...", "queen", 4);
-		    scr_text("* Okay", "queen", 28);
-		    scr_text("* Anyways", "queen", 1);
-		    scr_text("* I'm Gonna Go: Do Something", "queen", 2);
-		    scr_text("* Make Sure Your Dad Doesn't Leave", "queen", 3);
-		    scr_text("* Okay!", "lancer", 2);
-		    scr_text("* Sick", "queen", 10);
-		        scr_obj_sprite_after_textbox_delayed(obj_lancer, spr_lancer_left, false, 20);
-		        scr_char_move_after_textbox(obj_queen, spr_queen_walk_down, true, 0, 4, .9, 20);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_left, true, -5, 0, .9, 60);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_down, true, 0, 4, .9, 60);
+			scr_text("* You've Barely Touched It", "queen");
+			scr_text("* ...", "lancer");
 		break;
 		
 		case "self_3":
-			scr_fade_warp_with_music(rm_one, 240, sng_empty);
+			scr_text("* Girldad?", "lancer");
+			scr_text("* Yes Dearie", "queen");
+			scr_text("* Why... would he do that?", "lancer");
+			scr_text("* Because Your Dad Is A Bad Guy", "queen");
+			scr_text("* Or So He Proclaims", "queen");
+			scr_text("* But I don't want him to just be the bad guy.", "lancer");
+			scr_text("* I want him to be my dad...", "lancer");
+			scr_text("* You're supposed to trust your family.", "lancer");
+			scr_text("* I trust you, I hope you trust me...", "lancer");
+			scr_text("* How Can I Not You're A Little Bouncy Dude", "queen");
+			scr_text("* ...", "lancer");
+			scr_text("* So why is it so hard to trust him?", "lancer");
+			scr_text("* He Clearly Struggles With Keeping Promises", "queen");
+			scr_text("* ...", "queen");
+			scr_text("* I'm Sorry You Have To Deal With This", "queen");
+			scr_text("* If It Makes You Feel Any Better, I Don't Have A Dad", "queen");
+			scr_text("* I Kinda Just", "queen");
+			scr_text("* Existed|* Or Something", "queen");
+			scr_text("* Even If Your Dad Sucks", "queen");
+				scr_text_secondary("Which He Really Does", "queen");
+			scr_text("* At Least You Have A Parental Figure In Your Life", "queen");
+			scr_text("* I know, I just...", "lancer");
+			scr_text("* I want him to act like my parental figure too. Not just be it.", "lancer");
+			scr_text("* That's A Valid Request", "queen");
+			scr_text("* Unfortunately Your Dad Does Not Seem Very Interested In The Whole Family Ordeal", "queen");
+			scr_text("* ...", "lancer");
+			scr_text("* Do you think... Is someone gonna get hurt?", "lancer");
+			scr_text("* I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities", "queen");
+			scr_text("* Hopefully Ralsei Can Pacify Him, But If He Can't Then", "queen");
+			scr_text("* Uh", "queen");
+			scr_text("* ...", "queen");
+			scr_text("* Let Me Buy You Another Drink", "queen");
+			scr_text("* ...", "lancer");
 		break;
 		
-		case "self_4":
-			scr_char_move_after_textbox(obj_susie, spr_susie_walk_up, true, 0, -6, .5, 70);
-			scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_walk_up, false, 70);
-		break;
 		
-		case "self_5":
-			 scr_text("* Hey, dude!", "susie", 7);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_walk_down, false);
-			scr_text("* Hi, Susie!", "ralsei", 2);
-			scr_text("* Listen, we, uh...", "susie", 13);
-			scr_text("* Really need to talk about this.", "susie", 3);
-			scr_text("* I know, I've just been very busy, and...", "ralsei", 39);
-			scr_text("* But we will have a chance to talk!|* Just give it some time!", "ralsei", 40);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_happyhands, false);
-			scr_text("* ...Why do I feel like you're stalling the conversation?", "susie", 11);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_surprisedhands, false);
-			scr_text("* I...", "ralsei", 36);
-			scr_text("* ...", "ralsei", 37);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_down_lookdown, false);
-			scr_text("* You really want to discuss this, Susie?", "ralsei", 8);
-			scr_text("* Yeah, dude. I dropped this on you like the second I came down here.", "susie", 10);
-			scr_text("* I know, it's just that we went through some pretty heavy stuff, and...", "ralsei", 40);
-			scr_text("* I know. I was there.", "susie", 12);
-			scr_text("* And this conversation still needs to happen.", "susie", 13);
-			scr_text("* So... come outside soon, okay?", "susie", 8);
-			scr_text("* I'll grab a table.", "susie", 9);
-			scr_text("* ...Okay, Susie.|* If you insist.", "ralsei", 0);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_walk_down, false);
-			scr_text("* Alright.", "susie", 2);
-				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down, true, 0, 6, .5, 70);
-		break;
-		
-		case "self_6":
-			scr_text("* ...", "ralsei", 41);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_down_lookdown, false);
-		break;
-		
-		case "self_7":
-			scr_fade_warp_with_music(rm_two, 240, sng_empty);
-		break;
-		
-		case "self_8":
-			scr_text("* Okay. Here's how I think we should do this.", "susie", 2);
-			scr_text("* I'm gonna lay all the facts out on the table, and when I'm done, you can go.", "susie", 9);
-			scr_text("* Then you can say whatever you want, and it'll be kind of a back and forth thing?", "susie", 6);
-			scr_text("* Very civilized, Susie.", "ralsei", 2);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_smile, false);
-			scr_text("* Yeah, well...", "susie", 22);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting, false);
-			scr_text("* Maybe Noelle's rubbing off on me.", "susie", 50);
-			scr_text("* ...", "ralsei", 0);
-			scr_text("* Okay so first thing's first:", "susie", 7);
-			scr_text("* We're about to get into some serious $#&*.", "susie", 3);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting_flick, false);
-			scr_text("* Noelle is really smart, and we could use someone with her brains on our team.", "susie", 2);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting, false);
-			scr_text("* She's also really brave, and I know she'll stand with us regardless of any danger.", "susie", 21);
-			scr_text("* And uh...", "susie", 25);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting_neutral, false);
-			scr_text("* Kris knows her... really well.|* So that could help too.", "susie", 28);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting, false);
-			scr_text("* Second (or third) point, she could really bring a lot to Castle Town.", "susie", 10);
-			scr_text("* She's a very friendly person. I bet she'd love to be friends with everyone.", "susie", 56);
-			scr_text("* ...As far as I'm concerned.", "susie", 53);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting_neutral, false);
-			scr_text("* I mean, even you got a taste of how nice she is a few days ago.", "susie", 57);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting, false);
-			scr_text("* That should definitely help push the decision.", "susie", 56);
-			scr_text("* Anyways, final point for now:", "susie", 2);
-			scr_text("* I really, really like her.", "susie", 59);
-			scr_text("* And I really, really want her here.", "susie", 57);
-			scr_text("* If you're really my friend...", "susie", 56);
-			scr_text("* And you want to see me as happy as I can possibly be...", "susie", 59);
-			scr_text("* Just let her come here.", "susie", 50);
-			scr_text("* There's no harm in giving it a try, at least.", "susie", 47);
-			scr_text("* Plus, the Prophecy doesn't say anything about this, right?", "susie", 20);
-			scr_text("* ...", "ralsei", 4);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_neutral, false);
-			scr_text("* Can I speak now?", "ralsei", 5);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting, false);
-			scr_text("* Oh, yeah.|* Sorry, man.", "susie", 3);
-			scr_text("* No, the Prophecy doesn't say anything about her coming.", "ralsei", 18);
-			scr_text("* That's another point, then.", "susie", 7);
-			scr_text("* That doesn't mean...", "ralsei", 36);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_neutral, false);
-			scr_text("* Doesn't mean what?", "susie", 12);
-			scr_text("* It just doesn't feel...", "ralsei", 37);
-			scr_text("* ...", "ralsei", 38);
-			scr_text("* Well, regardless, your reasons do make sense.", "ralsei", 40);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_smile, false);
-			scr_text("* ...Right.", "susie", 13);
-			scr_text("* So yeah, that's why we need to bring Noelle over here.", "susie", 2);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting, false);
-			scr_text("* For the sake of... y'know.", "susie", 3);
-			scr_text("* I think it's wonderful you want to bring her here, Susie.", "ralsei", 2);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_smile, false);
-			scr_text("* Even if the reason is, well...", "ralsei", 5);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting, false);
-			scr_text("* ...", "susie", 27);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting_neutral, false);
-			scr_text("* Weird?", "susie", 20);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting, false);
-			scr_text("* No, not that...", "ralsei", 4);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_neutral, false);
-			scr_text("* Moreso that", "ralsei", 5);
-				scr_text_cutoff(13);
-				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_sitting_look_away, false, 30);
-				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_sitting_neutral, false, 30);
-				scr_villains_descend_after_textbox();
-		break;
-		
-		case "self_9":
-			scr_text("* ...", "susie", 11);
-			scr_text("* Can we help you?", "susie", 12);
-				scr_obj_sprite_on_page(obj_spamton, spr_spamtonhands_right, false);
-			scr_text("* D0 WE LOOK LIKE [1 Million Kromer Donated To Your Charity]?", "spamton");
-			scr_text("* WE ARE BACK FROM OUR DUTIES!|* ALAS, NOT MUCH WAS GAINED, GAINED.", "jevil");
-			scr_text("* ...", "susie", 0);
-			scr_text("* Didn't realize you guys left.", "susie", 3);
-			scr_text("* WE'RE n0t 0N A [Buy your glooby leash today]!!!", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_right, false);
-			scr_text("* [I CAN DO ANYTHING]!", "spamton");
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_armsout_left, false);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting_flick, true);
-			scr_text("* UEE HEE HEE! SPOKEN LIKE TRUE FREEDOM, FREEDOM!", "jevil");
-				scr_snd_on_page(snd_jevillaugh, 1);
-				scr_obj_sprite_on_page(obj_jevil, spr_jevil_left, true);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_surprised, false);
-			scr_text("* Uh...", "ralsei", 22);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_look_away, false);
-			scr_text("* Susie, do you want to continue this conversation inside?", "ralsei", 20);
-				scr_obj_sprite_on_page(obj_spamton, spr_spamton_left, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_sitting_smile, false);
-			scr_text("* ...Sure, dude.", "susie", 3);
-				scr_obj_sprite_on_page(obj_jevil, spr_jevil_right, false);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_sitting, false);
-				scr_char_move_after_textbox(obj_ralsei, spr_ralsei_walk_up, true, 0, -4, .9, 20);
-				scr_char_move_after_textbox(obj_ralsei, spr_ralsei_walk_right, true, 5, 0, .9, 15);
-				scr_char_move_after_textbox(obj_ralsei, spr_ralsei_walk_up, true, 0, -4, .9, 80);
-				scr_char_move_after_textbox(obj_susie, spr_susie_walk_up, true, 0, -4, .9, 20);
-				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left, true, -5, 0, .9, 20);
-				scr_char_move_after_textbox(obj_susie, spr_susie_walk_up, true, 0, -4, .9, 80);
-		break;
-		
-		case "self_10":
-			scr_fade_warp_with_music(rm_three, 240, sng_empty);
-		break;
-		
-		case "self_11":
-			scr_text("* ...", "susie", 12);
-			scr_text("* I thought those guys lived inside Kris' inventory?", "susie", 20);
-			scr_text("* Well, you had the Devilsknife equipped, and I had the Dealmaker, so...", "ralsei", 33);
-			scr_text("* Interesting.", "susie", 11);
-			scr_text("* Anyways.", "susie", 3);
-			scr_text("* Listen, Susie.", "ralsei", 8);
-			scr_text("* I know you really want her here.|* I do too.", "ralsei", 26);
-			scr_text("* But do you really want to subject her to all the struggles we go through?", "ralsei", 38);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_left_neutral, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
-			scr_text("* It's not enough that we put her through that madness with Queen a few days ago?", "ralsei", 37);
-			scr_text("* I'm just...", "ralsei", 41);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_smile, false);
-			scr_text("* Dude, you're allowed to have an opinion.|* It's okay.", "susie", 13);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_hand_out_left, false);
-			scr_text("* If you don't want her here, she doesn't need to be", "susie", 23);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_smile_left, false);
-				scr_text_cutoff_skip(52);
-			scr_text("* It's fine, Susie.|* Really.|* She can come.", "ralsei", 36);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right, false);
-			scr_text("* Oh, sick!|* That's great!", "susie", 7);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_left, false);
-			scr_text("* Thanks, man.", "susie", 8);
-			scr_text("* Of course, Susie.", "ralsei", 40);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_smile_right, false);
-			scr_text("* I...", "ralsei", 36);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right, false);
-				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_shocked, false, 70);
-				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_shocked, false, 70);
-				scr_obj_spawn_after_textbox(obj_queen, 660, 300, "Instances");
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_down, true, 0, 4, 1, 20);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_left_unhappy, true, -4, 0, .8, 90);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_left_unhappy, false, 0, 0, 0, 110);
-		break;
-		
-		case "self_12":
-			scr_text("* Hey", "queen", 0);
-			scr_text("* You Children Need To Hear Something", "queen", 2);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_surprised, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_surprised, false);
-			scr_text("* ...", "susie", 14);
-			scr_text("* Where did Lancer go?", "susie", 15);
-			scr_text("* Bathroom", "queen", 9);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_left, false);
-				scr_text_secondary("Of course he did.", "susie", 3);
-			scr_text("* Anyways Bouncy Boy Let His Dad Out Of The Cell", "queen", 0);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_left_unhappy, false);
-			scr_text("* He... He what???", "ralsei", 12);
-			scr_text("* And He Made A Phone Call", "queen", 3);
-			scr_text("* I Don't Know To Who", "queen", 4);
-			scr_text("* Can't you like... check records or something???", "susie", 35);
-			scr_text("* Nope", "queen", 3);
-				scr_text_secondary("I Mean Yeah But Who Cares", "queen", 0);
-			scr_text("* We need to put him back in his cell.", "ralsei", 34);
-			scr_text("* We don't know what he's capable of if he's not", "ralsei", 35);
-				scr_text_cutoff_skip(47);
-			scr_text("* Not what, Prince?", "king", , , , true);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_right_unhappy, false);
-			scr_text("* N-No...", "ralsei", 34);
-				scr_text_shake(1, 999);
-		break;
-		
-		case "self_13":
-			scr_camera_pan_to(camera_get_view_x(view_camera[0]) + 150, 120);
-		break;
-		
-		case "self_14":
-			scr_text("* What's your plan here?", "susie", 31);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
-			scr_text("* You gonna threaten us like you threatened your kid?", "susie", 32);
-			scr_text("* Do not speak ill about my son.", "king", 0);
-			scr_text("* Ill about him?|* This is ill about you!", "susie", 36);
-			scr_text("* ...Even worse.", "king", 5);
-			scr_text("* King, it'll be better for everyone if you just go", "ralsei", 40);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_smile_right, false);
-				scr_text_cutoff_skip(51);
-			scr_text("* I know what is best for me.", "king", 0);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
-			scr_text("* I may not have a throne to sit on or a people to rule,", "king", 1);
-			scr_text("* But I still have the power to defeat you.", "king", 4);
-			scr_text("* Yeah, that worked so well last time.", "susie", 33);
-			scr_text("* Oh, do not worry, Lightner.|* Help will arrive soon.", "king", 0);
-			scr_text("* But for now...", "king", 5);
-			scr_text("* I will make sure you pay for what you've done.", "king", 0);
-			scr_text("* Well Screw This I'm Siding With The Children", "queen", 15);
-				scr_char_move_on_page(obj_queen, spr_queen_walk_left_unhappy, true, -4, 0, .8, 81);
-				scr_obj_sprite_on_page_delayed(obj_queen, spr_queen_walk_right_unhappy, false, 0, 81);
-			scr_text("* So be it, woman.", "king", 0);
-			scr_text("* ...And if Lancer returns?", "king", 5);
-			scr_text("* I'll show him where his true faith must lie.", "king", 4);
-				scr_obj_spawn_after_textbox(obj_king_cape, 840, 240, layer_get_id("Instances"), snd_wing, 1);
-		break;
-		
-		case "self_15":
-		    global.fight_seq_starting = true;
-		    array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
-		        type: "sr_battle_intro"
-		    });
-		break;
-		
-		case "self_16":
-		    scr_ui_hide();
-		    scr_text("* ...", "lancer", 6);
-			scr_text("* D...", "lancer", 6);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_right_unhappy, false);
-			scr_text("* Dad?", "lancer", 7);
-			scr_text("* Lancer.", "king", 5);
-			scr_text("* Why are you...", "lancer", 4);
-			scr_text("* ...", "king", 5);
-			scr_text("* They started it", "king", 3);
-				scr_text_cutoff_skip(17);
-			scr_text("* Oh COME on!!!", "susie", 18);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* Lancer, your dad decided to pick a fight.", "susie", 43);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-				scr_text_secondary("This Is Indeed The Truth", "queen", 25)
-			scr_text("* But... why?", "lancer", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* These degenerates deserve all the pain that has been sent their way.", "king", 0);	
-			scr_text("* I trusted you...", "lancer", 10);
-			scr_text("* I trusted you, Dad.|* Why'd you do it?", "lancer", 12);
-			scr_text("* Do not question my authenticity, my son.", "king", 5);
-			scr_text("* As I said, I didn't lift a finger to hurt them.", "king", 4);
-				scr_obj_sprite_on_page(obj_king, spr_king_laugh, true);
-			scr_text("* Wordplay Is Not Your Savior Here", "queen", 16)
-				scr_obj_sprite_on_page(obj_king, spr_king_battle_idle, true);
-			scr_text("* Correct.|* Because help is on its way at any moment.", "king", 0);
-			scr_text("* You Are Still Yet To Explain Exactly Who This Help Is", "queen", 18)
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* Why spoil the", "king", 4);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-				scr_text_cutoff_skip(15);
-			scr_text("* Enough With The 'Spoilers'", "queen", 16)
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* If You Don't Want Us To Know, Stop Saying Things About It", "queen", 17)
-			scr_text("* So be it.", "king", 11);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Dad, you should really go back into your cell.", "lancer", 11);
-			scr_text("* ...", "king", 5);
-			scr_text("* No.", "king", 0);
-			scr_text("* ...", "lancer", 5);
-			scr_text("* King, it's dangerous for you to be out here.", "ralsei", 7);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* Worried that all my inhabitants will fall under their former rule?", "king", 1);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Do not count on it.|* The chances are unlikely.", "king", 2);
-			scr_text("* So why stay out here???", "susie", 17);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* I need to be available when", "king", 0);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-				scr_text_cutoff_skip(29);
-			scr_text("* If You Say Anything About Your Help I Will Dump You In Battery Acid", "queen", 1);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* ...", "king", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Such a violent spirit.", "king", 4);
-			scr_text("* That's What Happens When People Search Up Dangerous Things On Their Devices", "queen", 0);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* Oh Yeah BTW Remind Me To Order A Nuke Later", "queen", 7);
-			scr_text("* ...", "susie", 12);
-			scr_text("* That's your excuse? ", "king", 6);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Nothing towards the glorious fountain that created you?|* That created all of us?", "king", 5);
-			scr_text("* It bestowed your personality, not the 'object' you claim to stem from.", "king", 0);
-			scr_text("* You're LITERALLY a card.", "susie", 32);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* And you're LITERALLY an impatient brat.|* Let the grownups speak.", "king", 4);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* You little", "susie", 33);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-				scr_text_cutoff_skip(12);
-			scr_text("* Susie.", "ralsei", 4);
-			scr_text("* ...", "susie", 31);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-			scr_text("* The 'object' you were made from has no bearing on your personality.", "king", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* No one ever expected a card to be the king of a kingdom,", "king", 0);
-			scr_text("* just because it was the King of Spades, correct?", "king", 4);
-			scr_text("* Yes But None Of This Would Be Possible Without Physical Input From Lightners.", "queen", 18);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* Is that so?", "king", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Do you forget that not all objects in the Light World turn 'alive' here?", "king", 0);
-			scr_text("* Or at least, not at first.", "king", 5);
-			scr_text("* But the glorious fountains... they are what keeps us all living.", "king", 0);
-			scr_text("* They keep us strong.|* Keep us going.|* Empower us to live.", "king", 0);
-			scr_text("* You cannot attribute that to your variant of so-called 'personality'.", "king", 4);
-			scr_text("* Just because a fountain exists doesn't mean it warps your personality.", "ralsei", 53);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_annoyed_little, false);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* And who said it was preordained?", "king", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Why not just something that we have gained in experience over time?", "king", 6);
-			scr_text("* Because that's not how it works???", "ralsei", 54);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_annoyed_more, false);
-			scr_text("* Who's to say? You?", "king", 0);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Foolish, Prince, foolish.|* Your opinion does not change the reality of the situation.", "king", 4);
-			scr_text("* Well... what gives you the right to speak, huh?", "ralsei", 55);
-				scr_obj_sprite_once_on_page(obj_ralsei, spr_ralsei_right_angry_stomp);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* You're just a puppet.|* More than Jevil was, more than Spamton will ever be.", "ralsei", 56);
-			scr_text("* You just THINK the Knight likes you! That's why you keep doing all of this!", "ralsei", 60);
-				scr_obj_sprite_once_on_page(obj_ralsei, spr_ralsei_right_angry_stomp);
-			scr_text("* You're not a leader, you're a SHEEP.", "ralsei", 55);
-			scr_text("* A tyrannical, cowardly, little", "ralsei", 56);
-				scr_text_cutoff_skip(32);
-			scr_text("* Enough.", "king", 5);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Rein the lion back into its cage, young one.", "king", 0);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_annoyed_little, false);
-			scr_text("* ...", "ralsei", 37);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* I... I'm sorry...", "ralsei", 41);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
-			scr_text("* I don't know what came over me...", "ralsei", 38);
-			scr_text("* Don't apologize to this dumbass, man.", "susie", 41);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral_lookback, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_surprised, false);
-			scr_text("* He doesn't deserve any forgiveness from you.", "susie", 32);
-			scr_text("* That's what you think, Lightner.", "king", 0);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_right_sad, false);
-			scr_text("* Now.|* If you will all excuse me.", "king", 5);
-			scr_text("* I have some preparations to make.", "king", 4);
-				scr_char_move_after_textbox(obj_king, spr_king_walk_left, true, 0, 4, 0.8, 60);
-				scr_char_move_after_textbox(obj_king, spr_king_walk_left, true, -4, 0, 0.8, 90);
-				scr_char_move_after_textbox(obj_king, spr_king_walk_left, true, 0, 4, 0.8, 90);
-		break;
-		
-		case "self_17":
-			scr_text("* Where did his...", "susie", 11);
-			scr_text("* ...", "susie", 12);
-			scr_text("* Nevermind.", "susie", 0);
-			scr_text("* Anyways...", "susie", 13);
-			scr_text("* We gotta stop him.", "susie", 4);
-			scr_text("* It's no use, Susie...", "ralsei", 7);
-			scr_text("* We got him in there once, we can do it again.", "susie", 31);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_left_neutral, false);
-			scr_text("* Susie...", "lancer", 6);
-			scr_text("* ...?", "susie", 11);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-			scr_text("* Please... Don't hurt my dad...", "lancer", 7);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left_sad, false);
-			scr_text("* He just tried to kill us, Lancer.", "susie", 12);
-			scr_text("* Why are you even still siding with him?", "susie", 13);
-			scr_text("* Just because he's your dad doesn't mean he isn't also a murderer.", "susie", 31);
-			scr_text("* Or an attempted one, at least.", "susie", 32);
-			scr_text("* But...", "lancer", 4);
-			scr_text("* Lancer, we need to figure out who your dad is bringing as help.", "ralsei", 4);
-			scr_text("* As much as I dislike violence, he needs to be put in his place.", "ralsei", 27);
-			scr_text("* If You Want Me To Cheer You Up I'll Buy You An Acid Smoothie", "queen", 29);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_right, false);
-			scr_text("* ...", "lancer", 5);
-			scr_text("* Just... Try not to do anything... Too painful?", "lancer", 6);
-			scr_text("* Uh...", "susie", 27);
-			scr_text("* We'll do our best.", "susie", 29);
-			scr_text("* Thanks, Susie.", "lancer", 0);
-				scr_obj_sprite_on_page(obj_lancer, spr_lancer_left, false);
-				scr_char_move_after_textbox(obj_lancer, spr_lancer_down, false, 0, 4, .8, 120);
-		break;
-		
-		case "self_18":
-			scr_text("* ...", "queen", 4);	
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_right_unhappy, false);
-			scr_text("* Kick His Ass", "queen", 0);
-				scr_obj_sprite_on_page(obj_queen, spr_queen_walk_right, false);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_right, true, 4, 0, .8, 81);
-				scr_char_move_after_textbox(obj_queen, spr_queen_walk_down, true, 0, 4, .8, 80);
-		break;
-		
-		case "self_19":
-			scr_fade_warp_with_music(rm_one, 99999999999, sng_empty);
-		break;
 /*
-(Lancer and Queen leave)
+Queen: I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities
+Queen: Hopefully Ralsei Can Pacify Him, But If He Can't Then
+Queen: Uh
+Queen: ...
+Queen: Let Me Buy You Another Drink
+Lancer: ...
 */
 
 
