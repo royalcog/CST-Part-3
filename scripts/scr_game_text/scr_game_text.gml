@@ -37,7 +37,7 @@ function scr_game_text(_text_id)
 			scr_text("* So why is it so hard to trust him?", "lancer");
 			scr_text("* He Clearly Struggles With Keeping Promises", "queen");
 			scr_text("* ...", "queen");
-			scr_text("* I'm Sorry You Have To Deal With This", "queen");
+			scr_text("* I'm Sorry You Have To: Deal With This", "queen");
 			scr_text("* If It Makes You Feel Any Better, I Don't Have A Dad", "queen");
 			scr_text("* I Kinda Just", "queen");
 			scr_text("* Existed|* Or Something", "queen");
@@ -45,7 +45,7 @@ function scr_game_text(_text_id)
 				scr_text_secondary("Which He Really Does", "queen");
 			scr_text("* At Least You Have A Parental Figure In Your Life", "queen");
 			scr_text("* I know, I just...", "lancer");
-			scr_text("* I want him to act like my parental figure too. Not just be it.", "lancer");
+			scr_text("* I want him to act like my parental figure too.|* Not just be it.", "lancer");
 			scr_text("* That's A Valid Request", "queen");
 			scr_text("* Unfortunately Your Dad Does Not Seem Very Interested In The Whole Family Ordeal", "queen");
 			scr_text("* ...", "lancer");
