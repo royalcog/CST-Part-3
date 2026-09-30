@@ -55,43 +55,92 @@ function scr_game_text(_text_id)
 			scr_text("* I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities", "queen", 15);
 			scr_text("* Hopefully Ralsei Can Pacify Him, But If He Can't Then", "queen", 2);
 			scr_text("* Uh", "queen", 3);
+				scr_obj_sprite_on_page(obj_queen, spr_queen_wine_right_unhappy, false);
 			scr_text("* ...", "queen", 5);
 			scr_text("* Let Me Buy You Another Drink", "queen", 1);
+				scr_obj_sprite_on_page(obj_queen, spr_queen_wine_right, false);
 			scr_text("* ...", "lancer", 10);
 		break;
 		
 		case "self_4":
-			scr_text("* Where are you?", "king");
-			scr_text("* ...", "king");
-			scr_text("* No, I am not rushing you, but", "king");
+			scr_fade_warp_with_music(rm_empty, 240, sng_empty);
+		break;
+		
+		case "self_5":
+			scr_snd_after_textbox(snd_phone_ring, 1);
+		break;
+		
+		case "self_6":
+			scr_text("* Where are you?", "king", , , , true);
+			scr_text("* ...", "king", , , , true);
+			scr_text("* No, I am not rushing you, but", "king", , , , true);
 				scr_text_cutoff_skip(31);
-			scr_text("* ...", "king");
-			scr_text("* What?", "king");
-			scr_text("* ...", "king");
-			scr_text("* But that's not possible!", "king");
-			scr_text("* He was locked", "king");
-				scr_text_cutoff_skip(15);
-			scr_text("* ...", "king");
-			scr_text("* I am sorry.|* Forgive me, please.", "king");
-			scr_text("* I", "king");
-				scr_text_cutoff_skip(3);
-			scr_text("* Hey!!!", "susie");
-			scr_text("* ...", "king");
-			scr_text("* I must go.", "king");
-			scr_text("* I hope to see you soon.", "king");
-			scr_text("* (Click)", "empty");
+			scr_text("* ...", "king", , , , true);
+			scr_text("* What?", "king", , , , true);
+			scr_text("* ...", "king", , , , true);
+			scr_text("* But that's not possible!", "king", , , , true);
+			scr_text("* He was locked up", "king", , , , true);
+				scr_text_cutoff_skip(18);
+			scr_text("* ...", "king", , , , true);
+			scr_text("* I am sorry.|* Please forgive me.", "king", , , , true);
+			scr_text("* I...", "king", , , , true);
+			scr_text("* Hey!!!", "susie", , , , true);
+			scr_text("* ...", "king", , , , true);
+			scr_text("* I must go.", "king", , , , true);
+			scr_text("* I hope to see you soon.", "king", , , , true);
+			scr_text("* (Click...)", "empty");
+		break;
+		
+		case "self_7":
+			scr_fade_warp_with_music(rm_one, 240, sng_empty);
+		break;
+		
+		case "self_8":
+			scr_queue_movement_group_after_textbox([
+				   { obj: obj_susie, sprite: spr_susie_walk_right, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 },
+				   { obj: obj_ralsei, sprite: spr_ralsei_walk_right, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 }
+			]);
 		break;
 		
 		
 /*
-(end of phone call)
+(Susie and Ralsei walk over to King)
+Susie: Where do you think you're going???
+King: I'm right where I need to be, Lightner.
+Ralsei: King, please just go back to your cell.
+Ralsei: Even if not that, at least stay in the castle a bit longer
+King: I am done following your rules, Prince.
+King: Your kingdom has nothing to offer me.
+King: Not even an ex-royalty package.
+Susie: You think this is a joke? 
+King: Isn't that how you go through life, Lightner? Everything being a joke?
+King: All the friends you've made along your journey...
+King: All the Darkeners that you've helped, that you've battled...
+King: Have you ever taken any of it seriously?
+King: Has this week of adventure just been a satire for you?
+King: The way you all prance around, interacting with other dark worlds in such a heartfelt way...
+King: How do you sleep at night knowing you don't have this in your OWN world
+Susie: ENOUGH.
+Susie: You think you're so special?
+Susie: Well, why don't I just go back up to the Light World...
+Susie: And tear your card in half, huh???
+Susie: How would you like that???
+Ralsei: Susie, you can't get to the card unless you seal the fountain...
+Susie: ...Damn it.
+King: What a foolish Lightner.
+King: I bet your ice friend isn't much better than
+Susie: Don't you DARE talk about Noelle.
+King: Or what, Susie?
+King: Are you going to go back to your blissful ignorance of the true world?
+King: Or will you bring her here and watch her di
+(Susie jumps at King)
+(While midair): SWOON on Susie
+Ralsei: N-No... (shaky)
+Ralsei: You... (shaky)
+Ralsei: What have you do (shaky)
+SWOON on Ralsei
 */
 
-
-
-/*
-(King laughs and battle begins)
-*/
 
 		/*array_push(obj_cutscenehandler_midfightattacks.after_textbox_queue, {
 			type: "tenna_battle_intro"
