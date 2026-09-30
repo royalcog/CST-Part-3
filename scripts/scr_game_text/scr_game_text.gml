@@ -13,59 +13,78 @@ function scr_game_text(_text_id)
 	switch (_text_id)
 	{
 		case "self_1":
-			scr_text("* How Do You Like Your Smoothie", "queen");
-			scr_text("* It's good...", "lancer");
+			scr_text("* How Do You Like Your Smoothie", "queen", 13);
+			scr_text("* It's good...", "lancer", 0);
 		break;
 		
 		case "self_2":
-			scr_text("* You've Barely Touched It", "queen");
-			scr_text("* ...", "lancer");
+			scr_text("* You've Barely Touched It", "queen", 11);
+			scr_text("* ...", "lancer", 6);
 		break;
 		
 		case "self_3":
-			scr_text("* Girldad?", "lancer");
-			scr_text("* Yes Dearie", "queen");
-			scr_text("* Why... would he do that?", "lancer");
-			scr_text("* Because Your Dad Is A Bad Guy", "queen");
-			scr_text("* Or So He Proclaims", "queen");
-			scr_text("* But I don't want him to just be the bad guy.", "lancer");
-			scr_text("* I want him to be my dad...", "lancer");
-			scr_text("* You're supposed to trust your family.", "lancer");
-			scr_text("* I trust you, I hope you trust me...", "lancer");
-			scr_text("* How Can I Not You're A Little Bouncy Dude", "queen");
-			scr_text("* ...", "lancer");
-			scr_text("* So why is it so hard to trust him?", "lancer");
-			scr_text("* He Clearly Struggles With Keeping Promises", "queen");
-			scr_text("* ...", "queen");
-			scr_text("* I'm Sorry You Have To: Deal With This", "queen");
-			scr_text("* If It Makes You Feel Any Better, I Don't Have A Dad", "queen");
-			scr_text("* I Kinda Just", "queen");
-			scr_text("* Existed|* Or Something", "queen");
-			scr_text("* Even If Your Dad Sucks", "queen");
-				scr_text_secondary("Which He Really Does", "queen");
-			scr_text("* At Least You Have A Parental Figure In Your Life", "queen");
-			scr_text("* I know, I just...", "lancer");
-			scr_text("* I want him to act like my parental figure too.|* Not just be it.", "lancer");
-			scr_text("* That's A Valid Request", "queen");
-			scr_text("* Unfortunately Your Dad Does Not Seem Very Interested In The Whole Family Ordeal", "queen");
-			scr_text("* ...", "lancer");
-			scr_text("* Do you think... Is someone gonna get hurt?", "lancer");
-			scr_text("* I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities", "queen");
-			scr_text("* Hopefully Ralsei Can Pacify Him, But If He Can't Then", "queen");
-			scr_text("* Uh", "queen");
-			scr_text("* ...", "queen");
-			scr_text("* Let Me Buy You Another Drink", "queen");
-			scr_text("* ...", "lancer");
+			scr_text("* Girldad?", "lancer", 7);
+			scr_text("* Yes Dearie", "queen", 1);
+			scr_text("* Why... would he do that?", "lancer", 11);
+			scr_text("* Because Your Dad Is A Bad Guy", "queen", 10);
+			scr_text("* Or So He Proclaims", "queen", 0);
+			scr_text("* But I don't want him to just be the bad guy.", "lancer", 5);
+			scr_text("* I want him to be my dad...", "lancer", 10);
+			scr_text("* You're supposed to trust your family.", "lancer", 11);
+			scr_text("* I trust you, I hope you trust me...", "lancer", 12);
+			scr_text("* How Can I Not You're A Little Bouncy Dude", "queen", 25);
+			scr_text("* ...", "lancer", 5);
+			scr_text("* So why is it so hard to trust him?", "lancer", 10);
+			scr_text("* He Clearly Struggles With Keeping Promises", "queen", 11);
+			scr_text("* ...", "queen", 4);
+				scr_obj_sprite_on_page(obj_queen, spr_queen_wine_right_unhappy, false);
+			scr_text("* I'm Sorry You Have To: Deal With This", "queen", 3);
+			scr_text("* If It Makes You Feel Any Better, I Don't Have A Dad", "queen", 5);
+			scr_text("* I Kinda Just", "queen", 4);
+			scr_text("* Existed|* Or Something", "queen", 0);
+			scr_text("* Even If Your Dad Sucks", "queen", 15);
+				scr_text_secondary("Which He Really Does", "queen", 13);
+			scr_text("* At Least You Have A Parental Figure In Your Life", "queen", 10);
+				scr_obj_sprite_on_page(obj_queen, spr_queen_wine_right, false);
+			scr_text("* I know, I just...", "lancer", 4);
+			scr_text("* I want him to act like my parental figure too.|* Not just be it.", "lancer", 12);
+			scr_text("* That's A Valid Request", "queen", 32);
+			scr_text("* Unfortunately Your Dad Does Not Seem Very Interested In The Whole Family Ordeal", "queen", 11);
+			scr_text("* ...", "lancer", 11);
+			scr_text("* Do you think... Is someone gonna get hurt?", "lancer", 7);
+			scr_text("* I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities", "queen", 15);
+			scr_text("* Hopefully Ralsei Can Pacify Him, But If He Can't Then", "queen", 2);
+			scr_text("* Uh", "queen", 3);
+			scr_text("* ...", "queen", 5);
+			scr_text("* Let Me Buy You Another Drink", "queen", 1);
+			scr_text("* ...", "lancer", 10);
+		break;
+		
+		case "self_4":
+			scr_text("* Where are you?", "king");
+			scr_text("* ...", "king");
+			scr_text("* No, I am not rushing you, but", "king");
+				scr_text_cutoff_skip(31);
+			scr_text("* ...", "king");
+			scr_text("* What?", "king");
+			scr_text("* ...", "king");
+			scr_text("* But that's not possible!", "king");
+			scr_text("* He was locked", "king");
+				scr_text_cutoff_skip(15);
+			scr_text("* ...", "king");
+			scr_text("* I am sorry.|* Forgive me, please.", "king");
+			scr_text("* I", "king");
+				scr_text_cutoff_skip(3);
+			scr_text("* Hey!!!", "susie");
+			scr_text("* ...", "king");
+			scr_text("* I must go.", "king");
+			scr_text("* I hope to see you soon.", "king");
+			scr_text("* (Click)", "empty");
 		break;
 		
 		
 /*
-Queen: I Wouldn't Be Surprised Based On Your Dad And Susie's Personalities
-Queen: Hopefully Ralsei Can Pacify Him, But If He Can't Then
-Queen: Uh
-Queen: ...
-Queen: Let Me Buy You Another Drink
-Lancer: ...
+(end of phone call)
 */
 
 
