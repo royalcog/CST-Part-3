@@ -1,1 +1,0 @@
-if (!instance_exists(obj_battlebox)) instance_destroy();
