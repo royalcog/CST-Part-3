@@ -62,7 +62,7 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_down_lookdown, false);
 			scr_text("* You really want to discuss this, Susie?", "ralsei", 8);
 			scr_text("* Yeah, dude. I dropped this on you like the second I came down here.", "susie", 10);
-			scr_text("* I know, it's just that we went through some pretty heavy stuff not too long ago...", "ralsei", 40);
+			scr_text("* I know, it's just that we went through some pretty heavy stuff, and...", "ralsei", 40);
 			scr_text("* I know. I was there.", "susie", 12);
 			scr_text("* And this conversation still needs to happen.", "susie", 13);
 			scr_text("* So... come outside soon, okay?", "susie", 8);
