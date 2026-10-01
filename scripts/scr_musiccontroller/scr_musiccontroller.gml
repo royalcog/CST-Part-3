@@ -76,3 +76,12 @@ function scr_audio_fade_out(_sound_inst, _duration_ms, _stop_after = true, _stop
         }
     }
 }
+
+/// plays a sound starting silent and fades it up to _gain over _duration_ms
+/// returns the sound instance so you can stop/fade it out later
+function scr_audio_fade_in(_snd, _duration_ms, _gain = 1, _loop = false, _priority = 1)
+{
+    var _inst = audio_play_sound(_snd, _priority, _loop, 0);
+    audio_sound_gain(_inst, _gain, _duration_ms);
+    return _inst;
+}

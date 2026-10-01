@@ -187,6 +187,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_12":
+			global.cutscene_lock = true;
 			scr_text("* Where is the other one?", "knight");
 				scr_text_slow(0.3);
 				scr_text_shake(1, 99);
@@ -198,9 +199,43 @@ function scr_game_text(_text_id)
 				scr_snd_on_page(snd_knight_phone_call, 1);
 				
 				scr_snd_after_textbox(snd_hurt, 1);
+				
+				// stir for ~1 second
 				scr_custom_call_after_textbox_delayed(function() {
-				    scr_char_jolt(obj_susie, 1, 40);
-				}, 0); // set this higher to wait before she stirs
+				    scr_char_jolt(obj_susie, 1, 60);
+				}, 0);
+				
+				// then switch to the landed (crouched) pose, keeping her feet planted
+				scr_custom_call_after_textbox_delayed(function() {
+				    scr_set_sprite_keep_feet(obj_susie, spr_susie_landed);
+				    global.cutscene_lock = false;
+				}, 61);
+		break;
+		
+		case "self_13":
+			global.cutscene_lock = true;
+			scr_text("* You...", "susie");
+			scr_text("* You won't get Kris...", "susie");
+			
+				// play the get-up animation once after the textbox closes
+				scr_custom_call_after_textbox_delayed(function() {
+				    with (obj_susie)
+				    {
+				        sprite_index = spr_susie_getup;
+				        image_index = 0;
+				        image_speed = 1;
+				        anim_loop = false; // Step event freezes her on the last (standing) frame
+				    }
+				    global.cutscene_lock = false;
+				}, 0);
+		break;
+		
+		case "self_14":
+			scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
+		break;
+		
+		case "self_15":
+			scr_obj_sprite_after_textbox(obj_susie, spr_susie_heal, false);
 		break;
 		
 		
