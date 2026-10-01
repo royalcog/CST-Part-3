@@ -35,6 +35,10 @@ function scr_set_defaults_for_text()
 	speaker_shake[global.page_number] = false;
 	speaker_shake_speed[global.page_number] = 6;
 	speaker_shake_intensity[global.page_number] = 3;
+	speaker_shake[global.page_number] = false;
+	speaker_shake_speed[global.page_number] = 6;
+	speaker_shake_intensity[global.page_number] = 3;
+	speaker_shake_obj[global.page_number] = obj_spamton;
 	speaker_portrait_tail_spr[global.page_number] = noone;
 	text_x_offset_right[global.page_number] = 0;
 	text_speed_override[global.page_number] = noone;
@@ -318,25 +322,36 @@ function scr_text_cutoff_slow(_char, _threshold, _speed)
     obj_textbox.text_cutoff_threshold[global.page_number - 1] = _threshold;
 }
 
-function scr_text_speaker_shake(_speed, _intensity)
+function scr_text_speaker_shake(_speed, _intensity, _obj = obj_spamton)
 {
     obj_textbox.speaker_shake[global.page_number - 1] = true;
     obj_textbox.speaker_shake_speed[global.page_number - 1] = _speed;
     obj_textbox.speaker_shake_intensity[global.page_number - 1] = _intensity;
+    obj_textbox.speaker_shake_obj[global.page_number - 1] = _obj;
 }
 
 function scr_text_speaker_shake_stop()
 {
     obj_textbox.speaker_shake[global.page_number - 1] = false;
+    with (obj_textbox)
+    {
+        if (variable_instance_exists(id, "shaking_obj") && instance_exists(shaking_obj))
+        {
+            scr_char_shake_stop(shaking_obj);
+        }
+        shaking_obj = noone;
+    }
 }
 
 function scr_char_shake_update(_obj, _speed, _intensity)
 {
-    if !variable_instance_exists(_obj, "shake_offset")
+    if (!variable_instance_exists(_obj, "shake_active") || !_obj.shake_active)
     {
-        variable_instance_set(_obj, "shake_offset", 0);
-        variable_instance_set(_obj, "shake_dir_osc", 1);
-        variable_instance_set(_obj, "shake_base_x", _obj.x);
+        // (re)capture the resting position every time a new shake starts
+        _obj.shake_active  = true;
+        _obj.shake_offset  = 0;
+        _obj.shake_dir_osc = 1;
+        _obj.shake_base_x  = _obj.x;
     }
     _obj.shake_offset += _speed * _obj.shake_dir_osc;
     if _obj.shake_offset >= _intensity
@@ -354,10 +369,11 @@ function scr_char_shake_update(_obj, _speed, _intensity)
 
 function scr_char_shake_stop(_obj)
 {
-    if variable_instance_exists(_obj, "shake_offset")
+    if (variable_instance_exists(_obj, "shake_active") && _obj.shake_active)
     {
         _obj.x = _obj.shake_base_x;
         _obj.shake_offset = 0;
+        _obj.shake_active = false;
     }
 }
 

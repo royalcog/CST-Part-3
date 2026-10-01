@@ -1,5 +1,5 @@
 /// Full-screen swoon overlay + the layered slowed-down knight cut sounds
-function scr_swoon(_sprite, _duration = 180, _on_finish = undefined)
+function scr_swoon(_sprite, _duration = 180, _on_finish = undefined, _gain = 5)
 {
     var _s = instance_create_depth(0, 0, -10001, obj_swoon);
     _s.sprite_index = _sprite;
@@ -10,7 +10,7 @@ function scr_swoon(_sprite, _duration = 180, _on_finish = undefined)
     for (var i = 0; i < array_length(_pitches); i++)
     {
         var _snd = audio_play_sound(snd_knight_cut, 10, false);
-        audio_sound_gain(_snd, 8, 0);
+        audio_sound_gain(_snd, _gain, 0);
         audio_sound_pitch(_snd, _pitches[i]);
         array_push(_s.sounds, _snd);
     }

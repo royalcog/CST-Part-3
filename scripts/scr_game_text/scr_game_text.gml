@@ -156,11 +156,11 @@ function scr_game_text(_text_id)
 		case "self_10":
 			global.cutscene_lock = true;
 			scr_text("* N-No...", "ralsei");
-				scr_text_speaker_shake(.5, 1);
+				scr_text_shake(1, 99);
 			scr_text("* You...", "ralsei");
-				scr_text_speaker_shake(.5, 1);
+				scr_text_shake(1, 99);
 			scr_text("* What have you do", "ralsei");
-				scr_text_speaker_shake(.5, 1);
+				scr_text_shake(1, 99);
 				scr_text_cutoff_skip(18);
 
 			scr_custom_call_after_textbox_delayed(function()
