@@ -50,6 +50,7 @@ function scr_set_sprite_keep_feet(_obj, _sprite)
     _obj.image_speed  = 0;
     _obj.x = _p.x;
     _obj.y = _p.y;
+    _obj.last_sprite = _sprite; // already re-anchored, so End Step doesn't do it again
 }
 
 /// after Susie's swoon: fell sprite, knocked back to where she jumped from, screen shake

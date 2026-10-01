@@ -217,25 +217,52 @@ function scr_game_text(_text_id)
 			scr_text("* You...", "susie");
 			scr_text("* You won't get Kris...", "susie");
 			
-				// play the get-up animation once after the textbox closes
+				// get up (3 frames at 6fps = 30 game frames)
 				scr_custom_call_after_textbox_delayed(function() {
 				    with (obj_susie)
 				    {
 				        sprite_index = spr_susie_getup;
 				        image_index = 0;
 				        image_speed = 1;
-				        anim_loop = false; // Step event freezes her on the last (standing) frame
+				        anim_loop = false;
 				    }
-				    global.cutscene_lock = false;
 				}, 0);
-		break;
-		
-		case "self_14":
-			scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
-		break;
-		
-		case "self_15":
-			scr_obj_sprite_after_textbox(obj_susie, spr_susie_heal, false);
+				
+				// walk down to Ralsei
+				scr_custom_call_after_textbox_delayed(function() {
+				    scr_char_move_now(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
+				}, 35);
+				
+				// heal
+				scr_custom_call_after_textbox_delayed(function() {
+				    with (obj_susie)
+				    {
+				        sprite_index = spr_susie_heal;
+				        image_index = 0;
+				        image_speed = 1;
+				        anim_loop = false; // freezes on her last frame
+				        charge_snd = scr_audio_fade_in(snd_charge, 1000, 1, true);
+				    }
+				    
+				    // the heal lands on frame 14
+				    scr_call_on_anim_frame(obj_susie, spr_susie_heal, 14, function() {
+				        // quickly fade out the charge loop, then stop it
+				        audio_sound_gain(obj_susie.charge_snd, 0, 150);
+				        scr_call_after_frames(function() {
+				            audio_stop_sound(obj_susie.charge_snd);
+				        }, 10);
+				        
+				        audio_play_sound(snd_heal, 1, false);
+				        
+				        var _f = instance_create_depth(0, 0, obj_ralsei.depth - 1, obj_heal_flash);
+				        _f.target = obj_ralsei;
+				        _f.duration = 60;
+				        _f.on_finish = function() {
+				            scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_shocked);
+				            global.cutscene_lock = false;
+				        };
+				    });
+				}, 51);
 		break;
 		
 		

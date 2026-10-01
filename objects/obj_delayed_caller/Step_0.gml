@@ -43,4 +43,17 @@ switch (mode)
             }
         }
     break;
+	
+	case "on_frame":
+        if (!instance_exists(target) || target.sprite_index != target_sprite)
+        {
+            instance_destroy(); // sprite changed or object gone — cancel
+            break;
+        }
+        if (floor(target.image_index) >= target_frame)
+        {
+            if (call_func != noone) call_func();
+            instance_destroy();
+        }
+    break;
 }
