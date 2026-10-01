@@ -1,18 +1,19 @@
 timer++;
 
-if (timer >= duration)
+// fade the knight-cut layers out over the final frames so they end exactly with the overlay
+var _fade_start = duration - fade_frames;
+if (timer > _fade_start)
 {
-    // quick fade on the knight-cut layers so they don't click off, then stop them
+    var _g = sound_gain * clamp((duration - timer) / fade_frames, 0, 1);
     for (var i = 0; i < array_length(sounds); i++)
     {
-        if (audio_is_playing(sounds[i])) audio_sound_gain(sounds[i], 0, 150);
+        audio_sound_gain(sounds[i], _g, 0);
     }
-    scr_call_after_frames(method({ snds: sounds }, function()
-    {
-        for (var i = 0; i < array_length(snds); i++) audio_stop_sound(snds[i]);
-    }), 10);
+}
 
+if (timer >= duration)
+{
     var _cb = on_finish;
-    instance_destroy();
+    instance_destroy();   // Clean Up stops the sounds
     if (_cb != undefined) _cb();
 }

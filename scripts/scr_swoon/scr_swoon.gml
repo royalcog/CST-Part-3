@@ -5,6 +5,7 @@ function scr_swoon(_sprite, _duration = 180, _on_finish = undefined, _gain = 5)
     _s.sprite_index = _sprite;
     _s.duration     = _duration;
     _s.on_finish    = _on_finish;
+    _s.sound_gain   = _gain;
 
     var _pitches = [0.06, 0.1, 0.12, 0.18, 0.24];
     for (var i = 0; i < array_length(_pitches); i++)
@@ -58,6 +59,7 @@ function scr_susie_knockback()
 
     var _dur = 18;
     scr_set_sprite_keep_feet(obj_susie, spr_susie_fell);
+    scr_swoon_fall_sounds();
 
     var _t  = scr_feet_to_xy(obj_susie, spr_susie_fell, obj_susie.leap_home_x, obj_susie.leap_home_y);
     var _dx = (_t.x - obj_susie.x) / _dur;
@@ -67,4 +69,26 @@ function scr_susie_knockback()
     scr_camera_shake(4, 20);
 
     scr_call_after_frames(function() { global.cutscene_lock = false; }, _dur);
+}
+
+/// the hit/fall sound stack when a character drops into their fell/defeat sprite
+/// _scale: multiplier on every layer's volume (1 = the original screenshot values)
+function scr_swoon_fall_sounds(_scale = 0.75)
+{
+    var _layers = [
+        [snd_impact,        1,   1],
+        [snd_closet_impact, 1,   1],
+        [snd_closet_impact, 1,   0.5],
+        [snd_bageldefeat,   0.8, 0.8],
+        [snd_damagetaken,   1,   1],
+        [snd_glassbreak,    0.8, 0.4],
+        [snd_glassbreak,    0.6, 0.3]
+    ];
+
+    for (var i = 0; i < array_length(_layers); i++)
+    {
+        var _snd = audio_play_sound(_layers[i][0], 10, false);
+        audio_sound_gain(_snd, _layers[i][1] * _scale, 0);
+        audio_sound_pitch(_snd, _layers[i][2]);
+    }
 }

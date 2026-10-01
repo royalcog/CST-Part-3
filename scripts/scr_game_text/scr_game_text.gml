@@ -142,15 +142,16 @@ function scr_game_text(_text_id)
 				var _home = scr_get_feet(obj_susie);
 				obj_susie.leap_home_x = _home.x;
 				obj_susie.leap_home_y = _home.y;
-
+				
+				scr_obj_sprite_after_textbox(obj_ralsei, spr_ralsei_shocked_behind, false);
 				scr_char_move_after_textbox(obj_susie, spr_susie_clash_jump, false, 5, -6, 1, 24, false, 0.05, "out");
 				scr_snd_after_textbox(snd_boost, 1);
 
-				// ~1 second after she reaches the peak: swoon, then knockback when it ends
+				// shortly after snd_boost's main hit dies down: swoon, then knockback when it ends
 				scr_custom_call_after_textbox_delayed(function()
 				{
 				    scr_swoon(spr_roark_slash_susie, 180, scr_susie_knockback);
-				}, 24 + 60);
+				}, 40);
 		break;
 
 		case "self_10":
@@ -160,6 +161,7 @@ function scr_game_text(_text_id)
 			scr_text("* You...", "ralsei");
 				scr_text_shake(1, 99);
 			scr_text("* What have you do", "ralsei");
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
 				scr_text_shake(1, 99);
 				scr_text_cutoff_skip(18);
 
@@ -168,9 +170,15 @@ function scr_game_text(_text_id)
 			    scr_swoon(spr_roark_slash_ralsei, 180, function()
 			    {
 			        scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_defeat);
+			        scr_swoon_fall_sounds();
+			        scr_camera_shake(4, 20);
 			        global.cutscene_lock = false;
 			    });
 			}, 1);
+		break;
+			
+		case "self_11":
+			scr_text("* My Knight...", "king");
 		break;
 		
 		

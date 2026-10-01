@@ -3,6 +3,8 @@ duration  = 180;
 timer     = 0;
 on_finish = undefined;
 sounds    = [];
+sound_gain  = 5;   // set by scr_swoon
+fade_frames = 10;  // audio fades out over the last this-many frames of the swoon
 
 image_xscale = 2;
 image_yscale = 2;
