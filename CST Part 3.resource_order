@@ -371,6 +371,7 @@
     {"name":"snd_jevillaugh","order":10,"path":"sounds/snd_jevillaugh/snd_jevillaugh.yy",},
     {"name":"snd_king","order":9,"path":"sounds/snd_king/snd_king.yy",},
     {"name":"snd_kinglaugh","order":35,"path":"sounds/snd_kinglaugh/snd_kinglaugh.yy",},
+    {"name":"snd_knight_cut","order":40,"path":"sounds/snd_knight_cut/snd_knight_cut.yy",},
     {"name":"snd_knight_phone_call","order":12,"path":"sounds/snd_knight_phone_call/snd_knight_phone_call.yy",},
     {"name":"snd_lancer","order":8,"path":"sounds/snd_lancer/snd_lancer.yy",},
     {"name":"snd_mercyadd","order":20,"path":"sounds/snd_mercyadd/snd_mercyadd.yy",},

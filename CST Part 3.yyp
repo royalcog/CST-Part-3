@@ -469,6 +469,7 @@
     {"id":{"name":"snd_jevillaugh","path":"sounds/snd_jevillaugh/snd_jevillaugh.yy",},},
     {"id":{"name":"snd_king","path":"sounds/snd_king/snd_king.yy",},},
     {"id":{"name":"snd_kinglaugh","path":"sounds/snd_kinglaugh/snd_kinglaugh.yy",},},
+    {"id":{"name":"snd_knight_cut","path":"sounds/snd_knight_cut/snd_knight_cut.yy",},},
     {"id":{"name":"snd_knight_phone_call","path":"sounds/snd_knight_phone_call/snd_knight_phone_call.yy",},},
     {"id":{"name":"snd_lancer","path":"sounds/snd_lancer/snd_lancer.yy",},},
     {"id":{"name":"snd_mercyadd","path":"sounds/snd_mercyadd/snd_mercyadd.yy",},},
