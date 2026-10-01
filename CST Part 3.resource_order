@@ -764,6 +764,7 @@
     {"name":"spr_susie_fell","order":22,"path":"sprites/spr_susie_fell/spr_susie_fell.yy",},
     {"name":"spr_susie_getup","order":23,"path":"sprites/spr_susie_getup/spr_susie_getup.yy",},
     {"name":"spr_susie_hand_out_left","order":12,"path":"sprites/spr_susie_hand_out_left/spr_susie_hand_out_left.yy",},
+    {"name":"spr_susie_heal_end","order":28,"path":"sprites/spr_susie_heal_end/spr_susie_heal_end.yy",},
     {"name":"spr_susie_heal","order":26,"path":"sprites/spr_susie_heal/spr_susie_heal.yy",},
     {"name":"spr_susie_hurt","order":19,"path":"sprites/spr_susie_hurt/spr_susie_hurt.yy",},
     {"name":"spr_susie_landed","order":24,"path":"sprites/spr_susie_landed/spr_susie_landed.yy",},
