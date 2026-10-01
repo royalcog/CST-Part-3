@@ -39,8 +39,7 @@ if ball_phase == 3
 }
 if ball_phase == 1
 {
-    x += 5;
-    ball_target_x = 80;
+    x += ball_speed;
     if x >= ball_target_x
     {
         x = ball_target_x;
@@ -60,6 +59,7 @@ if ball_phase == 2
         ball_phase = 3;
         start_y = y;
         bob_angle = 0;
+        global.cutscene_lock = false;   // done arriving, next dialogue can start
     }
 }
 if ball_phase == 3

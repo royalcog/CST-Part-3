@@ -178,7 +178,13 @@ function scr_game_text(_text_id)
 		break;
 			
 		case "self_11":
+			global.cutscene_lock = true;
 			scr_text("* My Knight...", "king");
+
+			scr_custom_call_after_textbox_delayed(function()
+			{
+			    scr_knight_fly_in(326, 180);
+			}, 1);
 		break;
 		
 		

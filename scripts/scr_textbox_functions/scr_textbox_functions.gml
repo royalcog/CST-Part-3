@@ -500,6 +500,17 @@ function scr_roark_ball_start()
     }
 }
 
+/// spawn the Knight offscreen left (if needed) and fly him in as the ball to _target_x
+function scr_knight_fly_in(_target_x, _y, _start_x = -220, _speed = 5)
+{
+    var _k = instance_exists(obj_knight) ? obj_knight : instance_create_depth(_start_x, _y, -1003, obj_knight);
+    _k.x = _start_x;
+    _k.y = _y;
+    _k.ball_target_x = _target_x;
+    _k.ball_speed    = _speed;
+    scr_roark_ball_start();
+}
+
 function scr_knight_ball_after_textbox()
 {
     if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
