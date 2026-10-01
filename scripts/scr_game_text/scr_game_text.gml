@@ -180,16 +180,30 @@ function scr_game_text(_text_id)
 		case "self_11":
 			global.cutscene_lock = true;
 			scr_text("* My Knight...", "king");
-
-			scr_custom_call_after_textbox_delayed(function()
-			{
-			    scr_knight_fly_in(326, 180);
-			}, 1);
+				scr_custom_call_after_textbox_delayed(function()
+				{
+				    scr_knight_fly_in(326, 180);
+				}, 1);
+		break;
+		
+		case "self_12":
+			scr_text("* Where is the other one?", "knight");
+				scr_text_slow(0.3);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* I do not know, my Knight.|* They did not arrive with the rest of their party.", "king");
+			scr_text("* I need... all 3...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
 		break;
 		
 		
 /*
-
+RK: Where is the other one?
+King: I do not know, my Knight. They did not arrive with the rest of their party.
+RK: I need... all 3...
+(Susie stirs)
 */
 
 
