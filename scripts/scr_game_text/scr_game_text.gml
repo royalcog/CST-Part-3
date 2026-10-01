@@ -196,14 +196,18 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
+				
+				scr_snd_after_textbox(snd_hurt, 1);
+				scr_custom_call_after_textbox_delayed(function() {
+				    scr_char_jolt(obj_susie, 1, 40);
+				}, 0); // set this higher to wait before she stirs
 		break;
 		
 		
 /*
-RK: Where is the other one?
-King: I do not know, my Knight. They did not arrive with the rest of their party.
-RK: I need... all 3...
-(Susie stirs)
+Susie: You...
+Susie: You won't get Kris...
+(Susie gets up, heals Ralsei, and moves above him)
 */
 
 
