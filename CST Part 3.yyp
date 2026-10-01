@@ -933,6 +933,7 @@
     {"id":{"name":"spr_susie_surprised","path":"sprites/spr_susie_surprised/spr_susie_surprised.yy",},},
     {"id":{"name":"spr_susie_walk_down_neutral","path":"sprites/spr_susie_walk_down_neutral/spr_susie_walk_down_neutral.yy",},},
     {"id":{"name":"spr_susie_walk_down","path":"sprites/spr_susie_walk_down/spr_susie_walk_down.yy",},},
+    {"id":{"name":"spr_susie_walk_left_neutral","path":"sprites/spr_susie_walk_left_neutral/spr_susie_walk_left_neutral.yy",},},
     {"id":{"name":"spr_susie_walk_left","path":"sprites/spr_susie_walk_left/spr_susie_walk_left.yy",},},
     {"id":{"name":"spr_susie_walk_right_neutral","path":"sprites/spr_susie_walk_right_neutral/spr_susie_walk_right_neutral.yy",},},
     {"id":{"name":"spr_susie_walk_right","path":"sprites/spr_susie_walk_right/spr_susie_walk_right.yy",},},

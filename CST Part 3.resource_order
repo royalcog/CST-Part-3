@@ -781,6 +781,7 @@
     {"name":"spr_susie_surprised","order":9,"path":"sprites/spr_susie_surprised/spr_susie_surprised.yy",},
     {"name":"spr_susie_walk_down_neutral","order":25,"path":"sprites/spr_susie_walk_down_neutral/spr_susie_walk_down_neutral.yy",},
     {"name":"spr_susie_walk_down","order":7,"path":"sprites/spr_susie_walk_down/spr_susie_walk_down.yy",},
+    {"name":"spr_susie_walk_left_neutral","order":27,"path":"sprites/spr_susie_walk_left_neutral/spr_susie_walk_left_neutral.yy",},
     {"name":"spr_susie_walk_left","order":6,"path":"sprites/spr_susie_walk_left/spr_susie_walk_left.yy",},
     {"name":"spr_susie_walk_right_neutral","order":20,"path":"sprites/spr_susie_walk_right_neutral/spr_susie_walk_right_neutral.yy",},
     {"name":"spr_susie_walk_right","order":8,"path":"sprites/spr_susie_walk_right/spr_susie_walk_right.yy",},

@@ -228,10 +228,15 @@ function scr_game_text(_text_id)
 				    }
 				}, 0);
 				
-				// walk down to Ralsei
+				// walk right a little (4 * 0.8 * 10 = 32px)
+				scr_custom_call_after_textbox_delayed(function() {
+				    scr_char_move_now(obj_susie, spr_susie_walk_right_neutral, true, 4, 0, 0.8, 10);
+				}, 35);
+				
+				// then down to Ralsei (4 * 0.8 * 15 = 48px)
 				scr_custom_call_after_textbox_delayed(function() {
 				    scr_char_move_now(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
-				}, 35);
+				}, 46);
 				
 				// heal
 				scr_custom_call_after_textbox_delayed(function() {
@@ -258,11 +263,27 @@ function scr_game_text(_text_id)
 				        _f.target = obj_ralsei;
 				        _f.duration = 60;
 				        _f.on_finish = function() {
+				            // Ralsei gets up
 				            scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_shocked);
+				            
+				            // his body sits ~21px left of center in spr_ralsei_defeat,
+				            // so pull him back to where he was actually lying
+				            var _ralsei_shift = 21;
+				            obj_ralsei.x -= _ralsei_shift * obj_ralsei.image_xscale;
+				            
+				            // Susie turns to face him
+				            with (obj_susie)
+				            {
+				                sprite_index = spr_susie_left_neutral;
+				                image_index = 0;
+				                image_speed = 0;
+				                anim_loop = true;
+				            }
+				            
 				            global.cutscene_lock = false;
 				        };
 				    });
-				}, 51);
+				}, 62);
 		break;
 		
 		
