@@ -48,7 +48,7 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_queen, spr_queen_wine_right, false);
 			scr_text("* I know, I just...", "lancer", 4);
 			scr_text("* I want him to act like my parental figure too.|* Not just be it.", "lancer", 12);
-			scr_text("* That's A Valid Request", "queen", 32);
+			scr_text("* That's A Valid Request", "queen", 30);
 			scr_text("* Unfortunately Your Dad Does Not Seem Very Interested In The Whole Family Ordeal", "queen", 11);
 			scr_text("* ...", "lancer", 11);
 			scr_text("* Do you think... Is someone gonna get hurt?", "lancer", 7);
@@ -117,7 +117,7 @@ function scr_game_text(_text_id)
 			scr_text("* All the Darkeners that you've helped, that you've battled...", "king");
 			scr_text("* Have you ever taken any of it seriously?", "king");
 			scr_text("* Has this week of adventure just been a satire for you?", "king");
-			scr_text("* The way you all prance around, interacting with other dark worlds in such a heartfelt way...", "king");
+			scr_text("* The way you all prance around, interacting with the other dark worlds...", "king");
 			scr_text("* How do you sleep at night knowing you don't have this in your OWN world", "king");
 				scr_text_cutoff_skip(73);
 			scr_text("* ENOUGH.", "susie");
@@ -128,19 +128,19 @@ function scr_game_text(_text_id)
 			scr_text("* Susie, you can't get to the card unless you seal the fountain...", "ralsei");
 			scr_text("* ...Damn it.", "susie");
 			scr_text("* What a foolish Lightner.", "king");
-			scr_text("* I bet your ice friend isn't much better than", "king");
+			scr_text("* I bet your ice friend isn't much smarter than", "king");
 				scr_text_cutoff_skip(46);
 			scr_text("* Don't you DARE talk about Noelle.", "susie");
 			scr_text("* Or what, Susie?", "king");
 			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king");
 			scr_text("* Or will you bring her here and watch her di", "king");
 				scr_text_cutoff_skip(45);
-				scr_char_move_after_textbox(obj_susie, spr_susie_clash_jump, false, -5, -5, .9, 60, , "out");
+				scr_char_move_after_textbox(obj_susie, spr_susie_clash_jump, false, 5, -6, 1, 24, false, 0.05, "out");
+				scr_snd_after_textbox(snd_boost, 1);
 		break;
 		
 		
 /*
-(Susie jumps at King)
 (While midair): SWOON on Susie
 Ralsei: N-No... (shaky)
 Ralsei: You... (shaky)

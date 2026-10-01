@@ -651,7 +651,7 @@ if after_queue_armed && array_length(after_textbox_delayed_queue) > 0
             {
                 if (_entry[$ "is_movement"] ?? false)
                 {
-                    array_push(move_queue_active, {
+                     array_push(move_queue_active, {
                         obj:          _entry.obj,
                         sprite:       _entry.sprite,
                         loop:         _entry.loop,
@@ -663,7 +663,8 @@ if after_queue_armed && array_length(after_textbox_delayed_queue) > 0
                         started:      false,
                         fade_out:     _entry[$ "fade_out"] ?? false,
                         fade_speed:   _entry[$ "fade_speed"] ?? 0.05,
-                        fading:       false
+                        fading:       false,
+                        ease:         _entry[$ "ease"] ?? "none"
                     });
                 }
                 else
