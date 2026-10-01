@@ -97,42 +97,49 @@ function scr_game_text(_text_id)
 		
 		case "self_8":
 			scr_queue_movement_group_after_textbox([
-				   { obj: obj_susie, sprite: spr_susie_walk_right, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 },
-				   { obj: obj_ralsei, sprite: spr_ralsei_walk_right, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 }
+				   { obj: obj_susie, sprite: spr_susie_walk_right_neutral, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 },
+				   { obj: obj_ralsei, sprite: spr_ralsei_walk_right_neutral, loop: true, dx: 4, dy: 0, speed: .8, duration: 75 }
 			]);
+		break;
+		
+		case "self_9":
+			scr_text("* Where do you think you're going???", "susie");
+			scr_text("* I'm right where I need to be, Lightner.", "king");
+			scr_text("* King, please just go back to your cell.", "ralsei");
+			scr_text("* Even if not that, at least stay in the castle a bit longer", "ralsei");
+				scr_text_cutoff_skip(60);
+			scr_text("* I am done following your rules, Prince.", "king");
+			scr_text("* Your kingdom has nothing to offer me.", "king");
+			scr_text("* Not even an ex-royalty package.", "king");
+			scr_text("* You think this is a joke?", "susie");
+			scr_text("* Isn't that how you go through life, Lightner?|* Everything being a joke?", "king");
+			scr_text("* All the friends you've made along your journey...", "king");
+			scr_text("* All the Darkeners that you've helped, that you've battled...", "king");
+			scr_text("* Have you ever taken any of it seriously?", "king");
+			scr_text("* Has this week of adventure just been a satire for you?", "king");
+			scr_text("* The way you all prance around, interacting with other dark worlds in such a heartfelt way...", "king");
+			scr_text("* How do you sleep at night knowing you don't have this in your OWN world", "king");
+				scr_text_cutoff_skip(73);
+			scr_text("* ENOUGH.", "susie");
+			scr_text("* You think you're so special?", "susie");
+			scr_text("* Well, why don't I just go back up to the Light World...", "susie");
+			scr_text("* And tear your card in half, huh???", "susie");
+			scr_text("* How would you like that???", "susie");
+			scr_text("* Susie, you can't get to the card unless you seal the fountain...", "ralsei");
+			scr_text("* ...Damn it.", "susie");
+			scr_text("* What a foolish Lightner.", "king");
+			scr_text("* I bet your ice friend isn't much better than", "king");
+				scr_text_cutoff_skip(46);
+			scr_text("* Don't you DARE talk about Noelle.", "susie");
+			scr_text("* Or what, Susie?", "king");
+			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king");
+			scr_text("* Or will you bring her here and watch her di", "king");
+				scr_text_cutoff_skip(45);
+				scr_char_move_after_textbox(obj_susie, spr_susie_clash_jump, false, -5, -5, .9, 60, , "out");
 		break;
 		
 		
 /*
-(Susie and Ralsei walk over to King)
-Susie: Where do you think you're going???
-King: I'm right where I need to be, Lightner.
-Ralsei: King, please just go back to your cell.
-Ralsei: Even if not that, at least stay in the castle a bit longer
-King: I am done following your rules, Prince.
-King: Your kingdom has nothing to offer me.
-King: Not even an ex-royalty package.
-Susie: You think this is a joke? 
-King: Isn't that how you go through life, Lightner? Everything being a joke?
-King: All the friends you've made along your journey...
-King: All the Darkeners that you've helped, that you've battled...
-King: Have you ever taken any of it seriously?
-King: Has this week of adventure just been a satire for you?
-King: The way you all prance around, interacting with other dark worlds in such a heartfelt way...
-King: How do you sleep at night knowing you don't have this in your OWN world
-Susie: ENOUGH.
-Susie: You think you're so special?
-Susie: Well, why don't I just go back up to the Light World...
-Susie: And tear your card in half, huh???
-Susie: How would you like that???
-Ralsei: Susie, you can't get to the card unless you seal the fountain...
-Susie: ...Damn it.
-King: What a foolish Lightner.
-King: I bet your ice friend isn't much better than
-Susie: Don't you DARE talk about Noelle.
-King: Or what, Susie?
-King: Are you going to go back to your blissful ignorance of the true world?
-King: Or will you bring her here and watch her di
 (Susie jumps at King)
 (While midair): SWOON on Susie
 Ralsei: N-No... (shaky)

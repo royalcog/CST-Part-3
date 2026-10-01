@@ -76,7 +76,8 @@ if instance_exists(obj_textbox)
 			        speed: _entry.speed,
 			        duration: _entry.duration,
 			        timer: 0,
-			        page: _entry.page
+			        page: _entry.page,
+			        ease: _entry[$ "ease"] ?? "none"
 			    });
 
 			    array_delete(sprite_queue, i, 1);
@@ -398,7 +399,8 @@ if (processing_queue)
                 started: false,
                 fade_out: variable_struct_exists(_entry, "fade_out") ? _entry.fade_out : false,
                 fade_speed: variable_struct_exists(_entry, "fade_speed") ? _entry.fade_speed : 0.05,
-                fading: false 
+                fading: false,
+				ease: _entry[$ "ease"] ?? "none"
             });
             break; 
         }
@@ -1216,62 +1218,81 @@ for (var i = array_length(move_queue_active) - 1; i >= 0; i--)
             _m.started = true;
         }
 
-        if (!_m.fading)
-	        {
-	            // Initialize accumulators if they don't exist yet
-	            if (!variable_struct_exists(_m, "x_acc")) _m.x_acc = 0;
-	            if (!variable_struct_exists(_m, "y_acc")) _m.y_acc = 0;
+                if (!_m.fading)
+        {
+            var _ease = _m[$ "ease"] ?? "none";
 
-	            // Add the fractional movement each frame
-	            _m.x_acc += (_m.dx * _m.speed);
-	            _m.y_acc += (_m.dy * _m.speed);
+            if (_ease != "none")
+            {
+                // EASED MOVE: lerp from start to end over the duration
+                if (!variable_struct_exists(_m, "sx"))
+                {
+                    _m.sx = _m.obj.x;
+                    _m.sy = _m.obj.y;
+                    _m.tx = _m.sx + _m.dx * _m.speed * _m.duration;
+                    _m.ty = _m.sy + _m.dy * _m.speed * _m.duration;
+                }
 
-	            var _hit_wall = false;
+                _m.timer++;
+                var _k = (_m.duration > 0) ? scr_ease(_m.timer / _m.duration, _ease) : 1;
 
-	            // Process X movement whenever accumulated pixels reach at least 1 or -1
-	            with (_m.obj)
-	            {
-	                while (abs(_m.x_acc) >= 1)
-	                {
-	                    var _dir = sign(_m.x_acc);
-	                    if (!place_meeting(x + _dir, y, obj_wall))
-	                    {
-	                        x += _dir;
-	                        _m.x_acc -= _dir;
-	                    }
-	                    else
-	                    {
-	                        _hit_wall = true;
-	                        _m.x_acc = 0; // Clear accumulator on wall hit
-	                        break;
-	                    }
-	                }
+                // round so pixel-art sprites don't smear on sub-pixels
+                _m.obj.x = round(lerp(_m.sx, _m.tx, _k));
+                _m.obj.y = round(lerp(_m.sy, _m.ty, _k));
+            }
+            else
+            {
+                if (!variable_struct_exists(_m, "x_acc")) _m.x_acc = 0;
+                if (!variable_struct_exists(_m, "y_acc")) _m.y_acc = 0;
 
-	                // Process Y movement
-	                while (abs(_m.y_acc) >= 1)
-	                {
-	                    var _dir = sign(_m.y_acc);
-	                    if (!place_meeting(x, y + _dir, obj_wall))
-	                    {
-	                        y += _dir;
-	                        _m.y_acc -= _dir;
-	                    }
-	                    else
-	                    {
-	                        _hit_wall = true;
-	                        _m.y_acc = 0;
-	                        break;
-	                    }
-	                }
-	            }
+                _m.x_acc += (_m.dx * _m.speed);
+                _m.y_acc += (_m.dy * _m.speed);
 
-	            _m.timer++;
+                var _hit_wall = false;
 
-	            if (_hit_wall)
-	            {
-	                _m.timer = _m.duration;
-	            }
-	        }
+                with (_m.obj)
+                {
+                    while (abs(_m.x_acc) >= 1)
+                    {
+                        var _dir = sign(_m.x_acc);
+                        if (!place_meeting(x + _dir, y, obj_wall))
+                        {
+                            x += _dir;
+                            _m.x_acc -= _dir;
+                        }
+                        else
+                        {
+                            _hit_wall = true;
+                            _m.x_acc = 0;
+                            break;
+                        }
+                    }
+
+                    while (abs(_m.y_acc) >= 1)
+                    {
+                        var _dir = sign(_m.y_acc);
+                        if (!place_meeting(x, y + _dir, obj_wall))
+                        {
+                            y += _dir;
+                            _m.y_acc -= _dir;
+                        }
+                        else
+                        {
+                            _hit_wall = true;
+                            _m.y_acc = 0;
+                            break;
+                        }
+                    }
+                }
+
+                _m.timer++;
+
+                if (_hit_wall)
+                {
+                    _m.timer = _m.duration;
+                }
+            }
+        }
         else
         {
             _m.obj.image_alpha -= _m.fade_speed;
@@ -1350,7 +1371,8 @@ if (!current_movement_group_active && array_length(movement_queue) > 0)
             started: false,
             fade_out: variable_struct_exists(_mv, "fade_out") ? _mv.fade_out : false,
             fade_speed: variable_struct_exists(_mv, "fade_speed") ? _mv.fade_speed : 0.05,
-            fading: false
+            fading: false,
+			ease: _mv[$ "ease"] ?? "none"
         });
     }
 
@@ -1550,11 +1572,31 @@ for (var i = array_length(page_move_active) - 1; i >= 0; i--)
         continue;
     }
 
-    if (instance_exists(_m.obj))
+        if (instance_exists(_m.obj))
     {
-        _m.obj.x += _m.dx * _m.speed;
-        _m.obj.y += _m.dy * _m.speed;
-        _m.timer++;
+        var _ease = _m[$ "ease"] ?? "none";
+
+        if (_ease != "none")
+        {
+            if (!variable_struct_exists(_m, "sx"))
+            {
+                _m.sx = _m.obj.x;
+                _m.sy = _m.obj.y;
+                _m.tx = _m.sx + _m.dx * _m.speed * _m.duration;
+                _m.ty = _m.sy + _m.dy * _m.speed * _m.duration;
+            }
+
+            _m.timer++;
+            var _k = (_m.duration > 0) ? scr_ease(_m.timer / _m.duration, _ease) : 1;
+            _m.obj.x = round(lerp(_m.sx, _m.tx, _k));
+            _m.obj.y = round(lerp(_m.sy, _m.ty, _k));
+        }
+        else
+        {
+            _m.obj.x += _m.dx * _m.speed;
+            _m.obj.y += _m.dy * _m.speed;
+            _m.timer++;
+        }
 
         if (_m.timer >= _m.duration)
         {

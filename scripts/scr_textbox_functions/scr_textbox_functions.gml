@@ -686,7 +686,7 @@ function scr_instant_warp(_target_room) {
     }
 }
 
-function scr_char_move_on_page(_obj, _sprite, _loop, _dx, _dy, _speed, _duration)
+function scr_char_move_on_page(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _ease = "none")
 {
     if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
     array_push(obj_cutscenehandler_midfightattacks.sprite_queue, {
@@ -698,11 +698,12 @@ function scr_char_move_on_page(_obj, _sprite, _loop, _dx, _dy, _speed, _duration
         dy: _dy,
         speed: _speed,
         duration: _duration,
+        ease: _ease,
         page: global.page_number - 1
     });
 }
 
-function scr_char_move_after_textbox(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05) {
+function scr_char_move_after_textbox(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05, _ease = "none") {
     
     var _cutscene_obj = obj_cutscenehandler_midfightattacks;
     
@@ -726,17 +727,35 @@ function scr_char_move_after_textbox(_obj, _sprite, _loop, _dx, _dy, _speed, _du
             dy: _dy,
             speed: _speed,
             movement_duration: _duration,
-            delay: _calculated_delay, // chains after any movement(s) already queued for this batch
+            delay: _calculated_delay,
             fade_out: _fade_out,        
-            fade_speed: _fade_speed     
+            fade_speed: _fade_speed,
+            ease: _ease
         };
 
-        // If your handler expects it in pending vs active queue, push it to wherever it needs to go:
         array_push(_cutscene_obj.pending_delayed_queue, _entry);
-        
-        // Make sure the queue is armed so it starts processing right away
         _cutscene_obj.after_queue_armed = true;
     }
+}
+
+function scr_char_move_now(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05, _ease = "none")
+{
+    if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
+    array_push(obj_cutscenehandler_midfightattacks.move_queue_active, {
+        obj: _obj,
+        sprite: _sprite,
+        loop: _loop,
+        dx: _dx,
+        dy: _dy,
+        speed: _speed,
+        duration: _duration,
+        timer: 0,
+        started: false,
+        fade_out: _fade_out,
+        fade_speed: _fade_speed,
+        fading: false,
+        ease: _ease
+    });
 }
 
 function scr_teleport_after_textbox(_obj, _x, _y, _sprite = noone, _image_index = 0)
@@ -919,25 +938,6 @@ function scr_damage_after_textbox(_obj, _amount, _color_top = noone, _color_bott
             color_bottom: _final_bottom
         });
     }
-}
-
-function scr_char_move_now(_obj, _sprite, _loop, _dx, _dy, _speed, _duration, _fade_out = false, _fade_speed = 0.05)
-{
-    if !instance_exists(obj_cutscenehandler_midfightattacks) exit;
-    array_push(obj_cutscenehandler_midfightattacks.move_queue_active, {
-        obj: _obj,
-        sprite: _sprite,
-        loop: _loop,
-        dx: _dx,
-        dy: _dy,
-        speed: _speed,
-        duration: _duration,
-        timer: 0,
-        started: false,
-        fade_out: _fade_out,
-        fade_speed: _fade_speed,
-        fading: false
-    });
 }
 
 function scr_custom_call_after_textbox_delayed(_func, _delay)
