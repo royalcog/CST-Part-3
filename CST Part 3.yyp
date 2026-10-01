@@ -436,6 +436,7 @@
     {"id":{"name":"scr_start_king_attack5","path":"scripts/scr_start_king_attack5/scr_start_king_attack5.yy",},},
     {"id":{"name":"scr_start_king_attack6","path":"scripts/scr_start_king_attack6/scr_start_king_attack6.yy",},},
     {"id":{"name":"scr_start_king_attack7","path":"scripts/scr_start_king_attack7/scr_start_king_attack7.yy",},},
+    {"id":{"name":"scr_swoon","path":"scripts/scr_swoon/scr_swoon.yy",},},
     {"id":{"name":"scr_talkbox_scripts","path":"scripts/scr_talkbox_scripts/scr_talkbox_scripts.yy",},},
     {"id":{"name":"scr_textbox_functions","path":"scripts/scr_textbox_functions/scr_textbox_functions.yy",},},
     {"id":{"name":"scr_trigger_damage_popup","path":"scripts/scr_trigger_damage_popup/scr_trigger_damage_popup.yy",},},

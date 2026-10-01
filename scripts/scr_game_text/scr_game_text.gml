@@ -135,17 +135,47 @@ function scr_game_text(_text_id)
 			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king");
 			scr_text("* Or will you bring her here and watch her di", "king");
 				scr_text_cutoff_skip(45);
+
+				global.cutscene_lock = true;
+
+				// remember where Susie's feet are so she gets knocked back to the same spot
+				var _home = scr_get_feet(obj_susie);
+				obj_susie.leap_home_x = _home.x;
+				obj_susie.leap_home_y = _home.y;
+
 				scr_char_move_after_textbox(obj_susie, spr_susie_clash_jump, false, 5, -6, 1, 24, false, 0.05, "out");
 				scr_snd_after_textbox(snd_boost, 1);
+
+				// ~1 second after she reaches the peak: swoon, then knockback when it ends
+				scr_custom_call_after_textbox_delayed(function()
+				{
+				    scr_swoon(spr_roark_slash_susie, 180, scr_susie_knockback);
+				}, 24 + 60);
+		break;
+
+		case "self_10":
+			global.cutscene_lock = true;
+			scr_text("* N-No...", "ralsei");
+				scr_text_speaker_shake(.5, 1);
+			scr_text("* You...", "ralsei");
+				scr_text_speaker_shake(.5, 1);
+			scr_text("* What have you do", "ralsei");
+				scr_text_speaker_shake(.5, 1);
+				scr_text_cutoff_skip(18);
+
+			scr_custom_call_after_textbox_delayed(function()
+			{
+			    scr_swoon(spr_roark_slash_ralsei, 180, function()
+			    {
+			        scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_defeat);
+			        global.cutscene_lock = false;
+			    });
+			}, 1);
 		break;
 		
 		
 /*
-(While midair): SWOON on Susie
-Ralsei: N-No... (shaky)
-Ralsei: You... (shaky)
-Ralsei: What have you do (shaky)
-SWOON on Ralsei
+
 */
 
 
