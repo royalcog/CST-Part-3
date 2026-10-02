@@ -186,7 +186,7 @@ function scr_game_text(_text_id)
 				}, 1);
 		break;
 		
-		case "self_12":
+				case "self_12":
 			global.cutscene_lock = true;
 			scr_text("* Where is the other one?", "knight");
 				scr_text_slow(0.3);
@@ -198,8 +198,6 @@ function scr_game_text(_text_id)
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
 				
-				scr_snd_after_textbox(snd_hurt, 1);
-				
 				// stir for ~1 second
 				scr_custom_call_after_textbox_delayed(function() {
 				    scr_char_jolt(obj_susie, 1, 60);
@@ -208,6 +206,7 @@ function scr_game_text(_text_id)
 				// then switch to the landed (crouched) pose, keeping her feet planted
 				scr_custom_call_after_textbox_delayed(function() {
 				    scr_set_sprite_keep_feet(obj_susie, spr_susie_landed);
+				    audio_play_sound(snd_hurt, 1, false);
 				    global.cutscene_lock = false;
 				}, 61);
 		break;
@@ -216,6 +215,14 @@ function scr_game_text(_text_id)
 			global.cutscene_lock = true;
 			scr_text("* You...", "susie");
 			scr_text("* You won't get Kris...", "susie");
+				// Knight turns around when this line shows up
+				scr_call_on_page(function() {
+				    with (obj_knight)
+				    {
+				        x += sprite_get_width(sprite_index) * image_xscale; // keep it in place (origin is top-left)
+				        image_xscale = -image_xscale;
+				    }
+				}, 1, global.page_number - 1);
 			
 				// get up (3 frames at 6fps = 30 game frames)
 				scr_custom_call_after_textbox_delayed(function() {
@@ -238,7 +245,7 @@ function scr_game_text(_text_id)
 				    scr_char_move_now(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
 				}, 46);
 				
-				// heal
+				// heal, with the charge fading in
 				scr_custom_call_after_textbox_delayed(function() {
 				    with (obj_susie)
 				    {
@@ -251,12 +258,6 @@ function scr_game_text(_text_id)
 				    
 				    // the heal lands on frame 14
 				    scr_call_on_anim_frame(obj_susie, spr_susie_heal, 14, function() {
-				        // quickly fade out the charge loop, then stop it
-				        audio_sound_gain(obj_susie.charge_snd, 0, 150);
-				        scr_call_after_frames(function() {
-				            audio_stop_sound(obj_susie.charge_snd);
-				        }, 10);
-				        
 				        audio_play_sound(snd_heal, 1, false);
 				        
 				        var _f = instance_create_depth(0, 0, obj_ralsei.depth - 1, obj_heal_flash);
@@ -271,26 +272,87 @@ function scr_game_text(_text_id)
 				            var _ralsei_shift = 21;
 				            obj_ralsei.x -= _ralsei_shift * obj_ralsei.image_xscale;
 				            
-				            // Susie turns to face him
+				            // Susie finishes her heal, and the charge fades out
 				            with (obj_susie)
 				            {
-				                sprite_index = spr_susie_left_neutral;
+				                sprite_index = spr_susie_heal_end;
 				                image_index = 0;
-				                image_speed = 0;
-				                anim_loop = true;
+				                image_speed = 1;
+				                anim_loop = false;
+				                audio_sound_gain(charge_snd, 0, 400); // fade out over 0.4s
 				            }
+				            scr_call_after_frames(function() {
+				                audio_stop_sound(obj_susie.charge_snd);
+				            }, 24); // 400ms = 24 frames, stop once it's silent
 				            
-				            global.cutscene_lock = false;
+				            // then turns to face him once heal_end is done (4 frames at 6fps = 40 game frames)
+				            scr_call_after_frames(function() {
+				                with (obj_susie)
+				                {
+				                    sprite_index = spr_susie_left_neutral;
+				                    image_index = 0;
+				                    image_speed = 0;
+				                    anim_loop = true;
+				                }
+				                global.cutscene_lock = false;
+				            }, 40);
 				        };
 				    });
 				}, 62);
 		break;
 		
+		case "self_14":
+			scr_text("* You hear me?", "susie");
+				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, 4, 0.8, 75)
+			scr_text("* You won't get Kris.|* You won't get any of us.", "susie");
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
+			scr_text("* This game you play?|* It won't stand.", "susie");
+			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie");
+			scr_text("* Face it. We're too much for you to handle.", "susie");
+			scr_text("* Together, maybe...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* But without your... leader...", "knight");
+				scr_text_slow(0.3);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* You are nothing...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* Nothing?", "susie");
+			scr_text("* Sorry to break it to you, pal, but we can ACT on our own.", "susie");
+			scr_text("* Haven't needed Kris to do that in a few days now.", "susie");
+			scr_text("* You are... helpless...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+				scr_text("* She... will die...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* I...", "susie");
+			scr_text("* ...", "susie");
+			scr_text("* Ralsei, I'm sorry, but...", "susie");
+			scr_text("* Try to hold them off for a bit.", "susie");
+			scr_text("* ???", "ralsei");
+			scr_text("* I need to go.", "susie");
+			scr_text("* S-Susie! Wait!", "ralsei");
+			scr_text("* Coward.", "king");
+			scr_text("* ...", "ralsei");
+			scr_text("* Nobody calls my friend a coward.", "ralsei");
+		break;
+		
 		
 /*
-Susie: You...
-Susie: You won't get Kris...
-(Susie gets up, heals Ralsei, and moves above him)
+
+(Susie runs off)
+Ralsei: S-Susie! Wait!
+King: Coward.
+Ralsei: ...
+Ralsei: Nobody calls my friend a coward.
+(A battle begins)
 */
 
 
