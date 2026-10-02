@@ -303,12 +303,12 @@ function scr_game_text(_text_id)
 		
 		case "self_14":
 			scr_text("* You hear me?", "susie");
-				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, 4, 0.8, 75)
+				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 75)
 			scr_text("* You won't get Kris.|* You won't get any of us.", "susie");
 				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
 			scr_text("* This game you play?|* It won't stand.", "susie");
 			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie");
-			scr_text("* Face it. We're too much for you to handle.", "susie");
+			scr_text("* Face it.|* We're too much for you to handle.", "susie");
 			scr_text("* Together, maybe...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
