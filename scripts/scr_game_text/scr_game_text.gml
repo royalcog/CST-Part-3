@@ -395,6 +395,11 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_left_annoyed_little, false);
 			scr_text("* Nobody calls my friend a coward.", "ralsei", 44);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_annoyed_more, false);
+				
+				global.fight_seq_starting = true; // blocks Z until the battle's sequencer takes over
+				scr_custom_call_after_textbox_delayed(function() {
+				    obj_cutscenehandler_midfightattacks.ralsei_solo_state = 1;
+				}, 0);
 		break;
 		
 		
