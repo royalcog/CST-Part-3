@@ -288,7 +288,7 @@ switch (state)
 	            break;
 	        }
 	        // above the TALKbox (-9999) and the UI so everything goes black together
-	        var _fader = instance_create_depth(0, 0, -10001, obj_cutscenefade);
+	        var _fader = instance_create_depth(0, 0, -10003, obj_cutscenefade);
 	        _fader.fade_target = 1;
 	        _fader.target_room = end_warp_room;
 	        _fader.wait_duration = end_warp_wait;
