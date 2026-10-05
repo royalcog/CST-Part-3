@@ -13,3 +13,5 @@ reverse_frame = 0;
 turn_sword_sound_played = false;
 hit_offset_x = 58;
 hit_offset_y = 30;
+
+char_id = CharID.Knight;

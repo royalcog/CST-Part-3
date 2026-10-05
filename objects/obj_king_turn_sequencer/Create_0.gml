@@ -46,3 +46,11 @@ king_attack_end_pause_frames = 30; // short breather after the box closes, befor
 
 king_box_x_nudge = 42;    // lines the box up with the HP panel (which sits ~42px right of screen center); 0 = true screen center
 king_box_depth   = -5000; // in front of every character (lowest is Queen at -3001), still behind the TALKbox (-9999)
+
+// dialogue-only mode (Ralsei solo fight): no attack readies, no attacks, no box attack.
+// each round just plays its dialogue_batch; after the last one it fades into end_warp_room
+dialogue_only = false;
+end_warp_room = noone;
+end_warp_song = noone;
+end_warp_hold = 30;  // frames between the last line closing and the fade starting
+end_warp_wait = 60;  // frames held on black before the new room fades in

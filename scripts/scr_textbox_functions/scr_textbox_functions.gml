@@ -1466,3 +1466,111 @@ function create_textbox(_text_id)
         setup = true;
     }
 }
+
+// ===== Knighting (King kneels, Knight's combined pose) =====
+// spr_roark_knight_king / _hand have King baked in 41px (native) from their left edge,
+// at the same top-left as spr_king_kneel_happy
+#macro KNIGHTING_KING_OFFSET_X 41
+// Knight's crown: last frame of spr_roark_ball_to_knight (36,8) vs knighting sprites (20,3)
+#macro KNIGHT_STAND_TO_POSE_X 16
+#macro KNIGHT_STAND_TO_POSE_Y 5
+
+/// where King's x/y needs to be so the kneel sprite's feet (bottom-center of the
+/// visible pixels) land where his current sprite's feet are
+function scr_king_kneel_pos(_kneel_sprite = spr_king_kneel_happy)
+{
+    if (!instance_exists(obj_king)) return { x: 0, y: 0 };
+    var _k   = obj_king;
+    var _spr = _k.sprite_index;
+    var _sx  = _k.image_xscale;
+    var _sy  = _k.image_yscale;
+
+    var _fx = _k.x + ((sprite_get_bbox_left(_spr) + sprite_get_bbox_right(_spr) + 1) / 2 - sprite_get_xoffset(_spr)) * _sx;
+    var _fy = _k.y + (sprite_get_bbox_bottom(_spr) + 1 - sprite_get_yoffset(_spr)) * _sy;
+
+    return {
+        x: _fx - ((sprite_get_bbox_left(_kneel_sprite) + sprite_get_bbox_right(_kneel_sprite) + 1) / 2 - sprite_get_xoffset(_kneel_sprite)) * _sx,
+        y: _fy - (sprite_get_bbox_bottom(_kneel_sprite) + 1 - sprite_get_yoffset(_kneel_sprite)) * _sy
+    };
+}
+
+/// where the Knight should hover so that swapping into the knighting pose doesn't jump him
+function scr_knight_spot_by_king()
+{
+    var _k = scr_king_kneel_pos();
+    var _s = 2; // obj_knight's image_xscale/yscale
+    return {
+        x: _k.x - (KNIGHTING_KING_OFFSET_X + KNIGHT_STAND_TO_POSE_X) * _s,
+        y: _k.y - KNIGHT_STAND_TO_POSE_Y * _s
+    };
+}
+
+function scr_king_kneel(_sprite = spr_king_kneel_happy)
+{
+    if (!instance_exists(obj_king)) exit;
+    var _p = scr_king_kneel_pos(_sprite);
+    with (obj_king)
+    {
+        pre_kneel_sprite = sprite_index;
+        pre_kneel_x = x;
+        pre_kneel_y = y;
+        sprite_index = _sprite;
+        image_index = 0;
+        image_speed = 0;
+        x = _p.x;
+        y = _p.y;
+    }
+}
+
+/// Knight takes over drawing King (he's baked into the sprite), real King hides
+function scr_knighting_pose(_sprite = spr_roark_knight_king)
+{
+    if (!instance_exists(obj_knight) || !instance_exists(obj_king)) exit;
+    with (obj_knight)
+    {
+        ball_phase = 0; // stop the hover bob, or King would float along with him
+        sprite_index = _sprite;
+        image_index = 0;
+        image_speed = 0;
+        anim_loop = false;
+        x = obj_king.x - KNIGHTING_KING_OFFSET_X * image_xscale;
+        y = obj_king.y;
+    }
+    obj_king.visible = false;
+}
+
+/// Knight back to his standing frame (crown stays put), King reappears standing
+function scr_knighting_rise(_king_sprite = -1)
+{
+    if (instance_exists(obj_knight))
+    {
+        with (obj_knight)
+        {
+            sprite_index = spr_roark_ball_to_knight;
+            image_speed = 0;
+            image_index = image_number - 1;
+            anim_loop = false;
+            x -= KNIGHT_STAND_TO_POSE_X * image_xscale;
+            y -= KNIGHT_STAND_TO_POSE_Y * image_yscale;
+            start_y = y;
+            bob_angle = 0;
+            ball_phase = 3; // back to hovering
+        }
+    }
+    if (instance_exists(obj_king))
+    {
+        with (obj_king)
+        {
+            visible = true;
+            if (variable_instance_exists(id, "pre_kneel_sprite"))
+            {
+                sprite_index = pre_kneel_sprite;
+                x = pre_kneel_x;
+                y = pre_kneel_y;
+            }
+            if (_king_sprite != -1) sprite_index = _king_sprite;
+            image_index = 0;
+            image_speed = 1;
+        }
+    }
+}

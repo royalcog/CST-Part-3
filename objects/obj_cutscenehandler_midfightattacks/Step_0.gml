@@ -1091,6 +1091,91 @@ _king_seq.rounds = [
     sr_battle_intro_state = 0;
 }
 
+// 5c. RALSEI-ONLY "BATTLE" — no readies, no attacks; dialogue plays, then it fades to another room
+if ralsei_solo_state == 1
+{
+    if instance_exists(obj_ralsei)
+    {
+        obj_ralsei.sprite_index = spr_ralsei_battle_intro;
+        obj_ralsei.image_speed = 1;
+        obj_ralsei.image_index = 0;
+        obj_ralsei.anim_loop = false;
+    }
+    audio_play_sound(snd_taking_out_sword, 1, false);
+    ralsei_solo_state = 1.5;
+}
+
+if ralsei_solo_state == 1.5
+{
+    if (!instance_exists(obj_ralsei) || obj_ralsei.image_speed == 0)
+    {
+        ralsei_solo_delay = 15;
+        ralsei_solo_state = 2;
+    }
+}
+
+if ralsei_solo_state == 2
+{
+    ralsei_solo_delay -= 1;
+    if ralsei_solo_delay <= 0
+    {
+        ralsei_solo_state = 3;
+    }
+}
+
+if ralsei_solo_state == 3
+{
+    with (obj_UI) instance_destroy();
+
+    if instance_exists(obj_ralsei)
+    {
+        obj_ralsei.sprite_index = spr_ralsei_battle_idle;
+        obj_ralsei.image_speed = 1;
+        obj_ralsei.image_index = 0;
+        obj_ralsei.anim_loop = true;
+    }
+
+    instance_create_depth(0, 0, -100, obj_UI);
+    start_battle_music();
+
+    // only Ralsei's box, same box_offset_x as the full-party layout,
+    // so it sits in the middle slot as if Susie and Queen were on either side
+    scr_party_init([
+    {
+        name: "Ralsei", hp: 210, max_hp: 210, body: obj_ralsei, body_hurt_sprite: spr_ralsei_shocked,
+        box_offset_x: 236, box_offset_y: 0,
+        sprite_frame: spr_ralseibox_empty, hurt_frame: spr_ralseibox_hurtempty,
+        frame_scale: 42 / 153, divider_y: 153,
+        bar_offset_x: 513, bar_offset_y: 85, bar_width: 304, bar_height: 36,
+        bar_fill_color: make_color_rgb(1, 255, 0),
+        hp_current_x: 639, hp_max_x: 698, hp_text_offset_y: 33,
+        hurt_flash_time: 20,
+        attack_frame: spr_ralseibox_attack_empty,
+        icon_rect_x: 36, icon_rect_y: 21, icon_rect_w: 137, icon_rect_h: 101, hurt_icon_scale: 0.95
+    }
+    ]);
+    obj_UI.active_box = noone; // nobody's turn, box rests lowered the whole time
+
+    with (obj_king_turn_sequencer) instance_destroy();
+    var _seq = instance_create_depth(0, 0, 0, obj_king_turn_sequencer);
+    _seq.dialogue_only = true;
+    _seq.end_warp_room = rm_two;      // <- room to fade into, swap for the real one
+    _seq.end_warp_song = noone;       // <- music for the other side (noone = silence)
+    _seq.rounds = [
+        {
+            attackers: [],
+            dialogue_batch: [
+                // placeholder lines, swap in the real script
+                { speaker: obj_ralsei, text: "I won't let you hurt anyone else." },
+                { speaker: obj_king,   text: "Such conviction, little prince." }
+            ]
+        }
+    ];
+
+    global.fight_seq_starting = false;
+    ralsei_solo_state = 0;
+}
+
 // 6. IMPACT SEQUENCE STATE MACHINE
 if impact_seq_state == 1
 {

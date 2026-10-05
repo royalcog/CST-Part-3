@@ -36,6 +36,8 @@ page_move_active = [];
 
 sr_battle_intro_state = 0;
 sr_battle_intro_delay = 0;
+ralsei_solo_state = 0;
+ralsei_solo_delay = 0;
 
 var _keep1 = snd_impact;
 var _keep2 = snd_explosion;

@@ -35,6 +35,8 @@ offx[CharID.Queen] = 70; // placeholder — tune to taste
 offy[CharID.Queen] = -67;
 offx[CharID.King] = 40; // placeholder — tune to taste
 offy[CharID.King] = 80;
+offx[CharID.Knight] = 40; // placeholder — tune to taste
+offy[CharID.Knight] = 80;
 
 if (!variable_global_exists("dbg_friend_offx")) { global.dbg_friend_offx = offx[CharID.Friend]; }
 if (!variable_global_exists("dbg_friend_offy")) { global.dbg_friend_offy = offy[CharID.Friend]; }

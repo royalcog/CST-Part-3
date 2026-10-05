@@ -20,6 +20,14 @@ switch (state)
         round_index = (round_index + 1) mod array_length(rounds);
         _round = rounds[round_index];
 
+        // dialogue-only: skip readies and attacks completely
+        if (dialogue_only)
+        {
+            if (instance_exists(obj_UI)) obj_UI.active_box = noone;
+            state = "talk_start";
+            break;
+        }
+
         // reset every box back to its normal look for the new round
         with (obj_battle_ui_box)
         {
@@ -245,15 +253,53 @@ switch (state)
 	    }
 	    else
 	    {
-	        state = "king_attack_start";
+	        state = dialogue_only ? "dialogue_only_next" : "king_attack_start";
 	    }
 	break;
 
 	case "talk_wait":
 	    if (!instance_exists(obj_dialogue_chain))
 	    {
-	        state = "king_attack_start";
+	        state = dialogue_only ? "dialogue_only_next" : "king_attack_start";
 	    }
+	break;
+
+	// dialogue-only: next round's dialogue if there is one, otherwise fade out of the fight
+	case "dialogue_only_next":
+	    if (round_index < array_length(rounds) - 1)
+	    {
+	        timer = 30;
+	        state = "king_attack_wait"; // short gap, then advance_round
+	    }
+	    else
+	    {
+	        timer = end_warp_hold;
+	        state = "end_warp_hold";
+	    }
+	break;
+
+	case "end_warp_hold":
+	    timer--;
+	    if (timer <= 0)
+	    {
+	        if (end_warp_room == noone)
+	        {
+	            state = "battle_end";
+	            break;
+	        }
+	        // above the TALKbox (-9999) and the UI so everything goes black together
+	        var _fader = instance_create_depth(0, 0, -10001, obj_cutscenefade);
+	        _fader.fade_target = 1;
+	        _fader.target_room = end_warp_room;
+	        _fader.wait_duration = end_warp_wait;
+	        _fader.new_music_sound = end_warp_song;
+	        state = "end_warp_wait";
+	    }
+	break;
+
+	// nothing to do: the room change destroys this sequencer (it's not persistent)
+	case "end_warp_wait":
+	
 	break;
 
 	// spawns the real barrage if this round has one configured; otherwise

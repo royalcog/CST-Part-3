@@ -13,6 +13,7 @@ enum CharID {
     Jevil,
     Spamton,
     Queen,
-    King
+    King,
+	Knight
     //ADD ENTRIES HERE
 }

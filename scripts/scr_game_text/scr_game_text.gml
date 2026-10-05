@@ -197,7 +197,8 @@ function scr_game_text(_text_id)
 			scr_text("* My Knight...", "king", 0);
 				scr_custom_call_after_textbox_delayed(function()
 				{
-				    scr_knight_fly_in(326, 180);
+				    var _spot = scr_knight_spot_by_king();
+				    scr_knight_fly_in(_spot.x, _spot.y);
 				}, 1);
 		break;
 		
@@ -208,18 +209,21 @@ function scr_game_text(_text_id)
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
 			scr_text("* Of course.", "king", 5);
-				scr_obj_sprite_after_textbox(obj_king, spr_king_kneel_happy, false);
-				scr_obj_sprite_after_textbox_delayed(obj_knight, spr_roark_knight_king, false, 120);
+				scr_custom_call_after_textbox_delayed(scr_king_kneel, 0);
+				scr_custom_call_after_textbox_delayed(function() {
+				    scr_knighting_pose(spr_roark_knight_king);
+				    global.cutscene_lock = false;
+				}, 120);
 		break;
 		
 		case "self_13":
 			scr_text("* It is an honor.", "king", 0);
-				scr_obj_sprite_on_page(obj_king, spr_roark_knight_king_hand, false);
-			scr_text("* Rise", "knight");
+				scr_obj_sprite_on_page(obj_knight, spr_roark_knight_king_hand, false);
+			scr_text("* Rise...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-				scr_obj_sprite_after_textbox(obj_king, spr_roark_ball_to_knight, false);
+				scr_custom_call_after_textbox_delayed(scr_knighting_rise, 0);
 		break;
 		
 		case "self_14":
@@ -246,7 +250,7 @@ function scr_game_text(_text_id)
 				}, 61);
 		break;
 		
-		case "self_13":
+		case "self_15":
 			global.cutscene_lock = true;
 			scr_text("* You...", "susie", 31);
 			scr_text("* You won't... get Kris...", "susie", 31);
@@ -336,7 +340,7 @@ function scr_game_text(_text_id)
 				}, 62);
 		break;
 		
-		case "self_14":
+		case "self_16":
 			scr_text("* You hear me?", "susie", 32);
 				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 15)
 				scr_obj_sprite_on_page_delayed(obj_susie, spr_susie_walk_up, false, 0, 15);
@@ -385,7 +389,7 @@ function scr_game_text(_text_id)
 				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_walk_left_neutral, false, 112);
 		break;
 		
-		case "self_15":
+		case "self_17":
 			scr_text("* S-Susie! Wait!", "ralsei", 42);
 				scr_set_var_on_page(obj_susie, "depth", "-2000")
 			scr_text("* Coward.", "king", 0);
