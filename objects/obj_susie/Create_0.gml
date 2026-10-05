@@ -8,3 +8,6 @@ depth = -2000;
 image_xscale = 2;
 image_yscale = 2;
 anim_loop = true;
+
+// sprites whose origins are already hand-aligned with her standing sprites
+keep_feet_skip = [spr_susie_pointright, spr_susie_angry];

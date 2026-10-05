@@ -145,6 +145,7 @@ function scr_game_text(_text_id)
 			scr_text("* I bet your ice friend isn't much smarter than", "king", 0);
 				scr_text_cutoff_skip(46);
 			scr_text("* Don't you DARE talk about Noelle.", "susie", 61);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
 			scr_text("* Or what, Susie?", "king", 0);
 			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king", 7);
 			scr_text("* Or will you bring her here and watch her di", "king", 4);
@@ -320,7 +321,7 @@ function scr_game_text(_text_id)
 				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 15)
 				scr_obj_sprite_on_page_delayed(obj_susie, spr_susie_walk_up, false, 0, 15);
 			scr_text("* You won't get Kris.|* You won't get any of us.", "susie", 33);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
 			scr_text("* This game you play?|* It won't stand.", "susie", 32);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
 			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie", 33);
@@ -352,14 +353,16 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "susie", 31);
 			scr_text("* Ralsei, I'm sorry, but...", "susie", 27);
 			scr_text("* Try to hold them off for a bit.", "susie", 41);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral_lookback, false);
 			scr_text("* ???", "ralsei", 50);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_shocked, false);
 			scr_text("* I need to go.", "susie", 31);
 				scr_set_var_on_page(obj_susie, "depth", "-3001")
-				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_upset, true, 0, 4, .8, 15);
+					scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
+				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_upset, true, 0, 4, .8, 17);
 				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left_upset, true, -4, 0, .8, 85);
-				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_walk_left_upset, false, 160);
-				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_walk_left_neutral, false, 110);
+				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_walk_left_upset, false, 162);
+				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_walk_left_neutral, false, 112);
 		break;
 		
 		case "self_15":

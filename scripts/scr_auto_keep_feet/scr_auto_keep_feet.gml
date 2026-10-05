@@ -1,5 +1,7 @@
 /// call in a character's End Step: when sprite_index changes, shift x/y so the
 /// new sprite's bottom-center lands where the old sprite's bottom-center was
+/// sprites listed in the instance's keep_feet_skip array are trusted to have
+/// hand-aligned origins and swap without any nudge
 function scr_auto_keep_feet()
 {
     if (!variable_instance_exists(id, "last_sprite") || last_sprite == noone)
@@ -8,6 +10,14 @@ function scr_auto_keep_feet()
         exit;
     }
     if (sprite_index == last_sprite) exit;
+
+    // origin-aligned sprites (e.g. asymmetric poses): just swap, don't re-anchor
+    if (variable_instance_exists(id, "keep_feet_skip")
+    && (array_contains(keep_feet_skip, sprite_index) || array_contains(keep_feet_skip, last_sprite)))
+    {
+        last_sprite = sprite_index;
+        exit;
+    }
 
     // where the feet were on the old sprite
     var _fx = x + (sprite_get_width(last_sprite) / 2 - sprite_get_xoffset(last_sprite)) * image_xscale;
