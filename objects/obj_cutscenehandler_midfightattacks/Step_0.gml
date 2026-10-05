@@ -1178,14 +1178,18 @@ if ralsei_solo_state == 3
     var _cam_cx = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]) / 2;
     var _box_w  = sprite_get_width(spr_ralseibox_empty) * (42 / 153);
     var _box_cx = obj_UI.target_x + 236 + obj_UI.boxes_x_correction + _box_w / 2;
-    var _ui_nudge_x = -20; // extra shift left of dead center — tune to taste
-    var _ui_shift = _cam_cx - _box_cx + _ui_nudge_x;
+    var _ui_shift = _cam_cx - _box_cx; // ≈ -42
     obj_UI.target_x   += _ui_shift;
     obj_UI.onscreen_x += _ui_shift;
 
-    // draw above everything else in the GUI layer (TALKbox -9999, textbox -10000, swoon -10001)
+    // draw above everything else in the GUI layer (TALKbox -9999, textbox -10000, swoon -10001),
+    // and stretch the box's frame out to both screen edges
     obj_UI.depth = -10002;
-    with (obj_battle_ui_box) depth = -10002;
+    with (obj_battle_ui_box)
+    {
+        depth = -10002;
+        stretch_to_screen = true;
+    }
 	
     with (obj_king_turn_sequencer) instance_destroy();
     var _seq = instance_create_depth(0, 0, 0, obj_king_turn_sequencer);

@@ -45,3 +45,12 @@ body_saved = undefined;
 body_hurt_time = 30;    // how long the hurt pose holds
 body_hurt_timer = 0;
 body_shake_amount = 4;  // px, fades to 0 over the hurt time
+
+// stretch mode: clones the box's end borders out to the screen edges and fills the gap
+// with a plain interior column, so the panel spans the whole screen while the actual
+// box art stays where it is. Column numbers are for spr_ralseibox_empty's art.
+stretch_to_screen = false;
+stretch_cap_l_x  = 1;   // left border starts at this source column
+stretch_cap_r_x  = 845; // right border starts at this source column
+stretch_cap_w    = 8;   // border width, in source px
+stretch_fill_col = 20;  // a plain interior column (border lines top/bottom, black middle)
