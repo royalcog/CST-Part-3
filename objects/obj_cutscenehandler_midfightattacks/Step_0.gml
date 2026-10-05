@@ -1096,10 +1096,24 @@ if ralsei_solo_state == 1
 {
     if instance_exists(obj_ralsei)
     {
-        obj_ralsei.sprite_index = spr_ralsei_battle_intro;
-        obj_ralsei.image_speed = 1;
-        obj_ralsei.image_index = 0;
-        obj_ralsei.anim_loop = false;
+        with (obj_ralsei)
+        {
+            // keep his body exactly where it is: line up the visible bottom-center of his
+            // current sprite with the body in the battle sprites (battle_idle's bbox, since
+            // battle_intro shares its size/origin but its bbox includes the swing)
+            var _old = sprite_index;
+            var _ref = spr_ralsei_battle_idle;
+            var _fx = x + ((sprite_get_bbox_left(_old) + sprite_get_bbox_right(_old) + 1) / 2 - sprite_get_xoffset(_old)) * image_xscale;
+            var _fy = y + (sprite_get_bbox_bottom(_old) + 1 - sprite_get_yoffset(_old)) * image_yscale;
+            x = _fx - ((sprite_get_bbox_left(_ref) + sprite_get_bbox_right(_ref) + 1) / 2 - sprite_get_xoffset(_ref)) * image_xscale;
+            y = _fy - (sprite_get_bbox_bottom(_ref) + 1 - sprite_get_yoffset(_ref)) * image_yscale;
+
+            sprite_index = spr_ralsei_battle_intro;
+            last_sprite = sprite_index; // stop scr_auto_keep_feet from re-anchoring this swap
+            image_speed = 1;
+            image_index = 0;
+            anim_loop = false;
+        }
     }
     audio_play_sound(snd_taking_out_sword, 1, false);
     ralsei_solo_state = 1.5;
@@ -1129,10 +1143,14 @@ if ralsei_solo_state == 3
 
     if instance_exists(obj_ralsei)
     {
-        obj_ralsei.sprite_index = spr_ralsei_battle_idle;
-        obj_ralsei.image_speed = 1;
-        obj_ralsei.image_index = 0;
-        obj_ralsei.anim_loop = true;
+        with (obj_ralsei)
+        {
+            sprite_index = spr_ralsei_battle_idle; // same size/origin as battle_intro, no move needed
+            last_sprite = sprite_index;
+            image_speed = 1;
+            image_index = 0;
+            anim_loop = true;
+        }
     }
 
     instance_create_depth(0, 0, -100, obj_UI);
@@ -1155,12 +1173,21 @@ if ralsei_solo_state == 3
     }
     ]);
     obj_UI.active_box = noone; // nobody's turn, box rests lowered the whole time
-
+	// the full 3-box panel sits ~42px right of center; with only Ralsei's box showing
+    // that's obvious, so center his box on screen for this fight
+    var _cam_cx = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]) / 2;
+    var _box_w  = sprite_get_width(spr_ralseibox_empty) * (42 / 153);
+    var _box_cx = obj_UI.target_x + 236 + obj_UI.boxes_x_correction + _box_w / 2;
+    var _ui_shift = _cam_cx - _box_cx; // ≈ -42
+    obj_UI.target_x   += _ui_shift;
+    obj_UI.onscreen_x += _ui_shift;
+	
     with (obj_king_turn_sequencer) instance_destroy();
     var _seq = instance_create_depth(0, 0, 0, obj_king_turn_sequencer);
     _seq.dialogue_only = true;
     _seq.end_warp_room = rm_two;      // <- room to fade into, swap for the real one
     _seq.end_warp_song = noone;       // <- music for the other side (noone = silence)
+	_seq.end_warp_wait = 240; // frames held on black before the next room loads
     var _rk_cps = 0.15; // slower than default_cps (0.4), like his scr_text_slow lines
     _seq.rounds = [
         {
