@@ -1161,13 +1161,24 @@ if ralsei_solo_state == 3
     _seq.dialogue_only = true;
     _seq.end_warp_room = rm_two;      // <- room to fade into, swap for the real one
     _seq.end_warp_song = noone;       // <- music for the other side (noone = silence)
+    var _rk_cps = 0.15; // slower than default_cps (0.4), like his scr_text_slow lines
     _seq.rounds = [
         {
             attackers: [],
             dialogue_batch: [
-                // placeholder lines, swap in the real script
-                { speaker: obj_ralsei, text: "I won't let you hurt anyone else." },
-                { speaker: obj_king,   text: "Such conviction, little prince." }
+                { speaker: obj_king,   text: "A battle? Without anyone on your side?" },
+                { speaker: obj_king,   text: "I sense it will be mildly difficult to obtain victory here, Prince." },
+                { speaker: obj_ralsei, text: "I don't need to fight you." },
+                { speaker: obj_king,   text: "Hm?" },
+                { speaker: obj_ralsei, text: "As long as I hold my turn, the battle won't progress." },
+                { speaker: obj_ralsei, text: "You guys will be stuck here until I choose an action." },
+                { speaker: obj_king,   text: "..." },
+                { speaker: obj_king,   text: "Is this true, my Knight?" },
+                { speaker: obj_knight, text: "...",      cps: _rk_cps },
+                { speaker: obj_knight, text: "Yes...",   cps: _rk_cps, snd: snd_knight_phone_call },
+                { speaker: obj_king,   text: "How did you learn this tactic, Prince?" },
+                { speaker: obj_ralsei, text: "Saw it from a flower." },
+                { speaker: obj_knight, text: "...",      cps: _rk_cps }
             ]
         }
     ];

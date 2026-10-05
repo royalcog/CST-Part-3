@@ -138,7 +138,7 @@ function scr_game_text(_text_id)
 			scr_text("* Susie, you can't get to the card unless you seal the fountain...", "ralsei", 41);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
 			scr_text("* ...Damn it.", "susie", 31);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_left_upset_1, false);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
 			scr_text("* What a foolish Lightner.", "king", 4);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
 				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
@@ -345,7 +345,7 @@ function scr_game_text(_text_id)
 				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 15)
 				scr_obj_sprite_on_page_delayed(obj_susie, spr_susie_walk_up, false, 0, 15);
 			scr_text("* You won't get Kris.|* You won't get any of us.", "susie", 33);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_left_upset_1, false);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
 			scr_text("* This game you play?|* It won't stand.", "susie", 32);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
 			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie", 33);
@@ -377,12 +377,10 @@ function scr_game_text(_text_id)
 			scr_text("* ...", "susie", 31);
 			scr_text("* Ralsei, I'm sorry, but...", "susie", 27);
 			scr_text("* Try to hold them off for a bit.", "susie", 41);
-				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral_lookback, false);
 			scr_text("* ???", "ralsei", 50);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_shocked, false);
 			scr_text("* I need to go.", "susie", 31);
 				scr_set_var_on_page(obj_susie, "depth", "-3001")
-					scr_obj_sprite_on_page(obj_susie, spr_susie_walk_left_upset_1, false);
 				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_upset, true, 0, 4, .8, 17);
 				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left_upset, true, -4, 0, .8, 85);
 				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_walk_left_upset, false, 162);

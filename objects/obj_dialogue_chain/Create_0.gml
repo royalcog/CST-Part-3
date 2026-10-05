@@ -62,6 +62,7 @@ flip[CharID.Spamton] = true;
 flip[CharID.Jevil] = true;
 flip[CharID.Queen] = true; // placeholder — tune to taste
 flip[CharID.King] = false; // placeholder — tune to taste
+flip[CharID.Knight] = false; // placeholder — tune to taste
 next_delay = 0;
 dim_timer = 0;
 dim_phase = 1;

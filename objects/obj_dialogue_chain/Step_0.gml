@@ -44,7 +44,7 @@ if (dim_phase == 2) // run dialogue
 				var ox  = offx[cid];
 				var oy  = offy[cid];
 				var fp  = flip[cid];
-				var cps = default_cps;
+				var cps = variable_struct_exists(e, "cps") ? e.cps : default_cps;
 				var _keep_anim = !(variable_struct_exists(e, "keep_animating") && !e.keep_animating);
 				var _dim = variable_struct_exists(e, "dim") ? e.dim : -1;
 				var _animate = !(variable_struct_exists(e, "no_animate") && e.no_animate);
@@ -52,6 +52,10 @@ if (dim_phase == 2) // run dialogue
 				// pause before the next line starts either (goes "instantly" to the next speaker)
 				var _instant = variable_struct_exists(e, "instant_cutoff") && e.instant_cutoff;
 				curr_box = scr_talkbox_show(sp, txt, ww, ox, oy, fp, cps, _keep_anim, _dim, _animate, _instant);
+				if (variable_struct_exists(e, "snd") && e.snd != noone)
+				{
+				    audio_play_sound(e.snd, 1, false);
+				}
 				if (variable_struct_exists(e, "reveal") && e.reveal)
 				{
 				    curr_box.on_destroy_reveal = true;

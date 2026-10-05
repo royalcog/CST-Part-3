@@ -1570,7 +1570,7 @@ function scr_knighting_rise(_king_sprite = -1)
             }
             if (_king_sprite != -1) sprite_index = _king_sprite;
             image_index = 0;
-            image_speed = 1;
+            image_speed = 0;
         }
     }
 }
