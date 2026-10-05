@@ -1182,14 +1182,11 @@ if ralsei_solo_state == 3
     obj_UI.target_x   += _ui_shift;
     obj_UI.onscreen_x += _ui_shift;
 
-    // draw above everything else in the GUI layer (TALKbox -9999, textbox -10000, swoon -10001),
-    // and stretch the box's frame out to both screen edges
+    // panel behind, box on top, both above everything else in the GUI layer
+    // (TALKbox -9999, textbox -10000, swoon -10001)
     obj_UI.depth = -10002;
-    with (obj_battle_ui_box)
-    {
-        depth = -10002;
-        stretch_to_screen = true;
-    }
+    obj_UI.panel_full_width = true;
+    with (obj_battle_ui_box) depth = -10003;
 	
     with (obj_king_turn_sequencer) instance_destroy();
     var _seq = instance_create_depth(0, 0, 0, obj_king_turn_sequencer);

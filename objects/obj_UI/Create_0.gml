@@ -19,3 +19,5 @@ active_box = noone; // which obj_battle_ui_box currently shows its button row
 
 boxes_x_correction = -90; // pulls just the boxes back left, independent of obj_UI's own anchor — tune this, not box_offset_x
 boxes_y_correction = 3; // pushes just the boxes down, independent of obj_UI's own anchor — tune this, not box_offset_y
+
+panel_full_width = false; // party-box mode: draw this panel stretched edge to edge behind the boxes

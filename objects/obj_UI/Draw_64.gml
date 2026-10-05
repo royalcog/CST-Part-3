@@ -1,5 +1,17 @@
 if (use_party_boxes)
 {
+    // full-width panel behind the boxes. Every column of the panel art is identical,
+    // so one column stretched across the screen = the panel's ends cloned out to both edges.
+    // offset by how far the UI still has to slide, so it slides in with the box as one piece.
+    if (panel_full_width)
+    {
+        var _pvy = camera_get_view_y(view_camera[0]);
+        var _psx = display_get_gui_width()  / camera_get_view_width(view_camera[0]);
+        var _psy = display_get_gui_height() / camera_get_view_height(view_camera[0]);
+        var _slide = (x - onscreen_x) * _psx; // 0 once settled
+        draw_sprite_part_ext(sprite_index, 0, 0, 0, 1, sprite_get_height(sprite_index),
+            _slide, (y - _pvy) * _psy, display_get_gui_width(), image_yscale * _psy, c_white, 1);
+    }
     if (instance_exists(active_box))
     {
         var _correction = boxes_x_correction;
