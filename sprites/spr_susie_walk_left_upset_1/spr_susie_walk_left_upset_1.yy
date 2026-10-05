@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_susie_walk_right_upset",
+  "%Name":"spr_susie_walk_left_upset_1",
   "bboxMode":0,
   "bbox_bottom":44,
   "bbox_left":0,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"6ffad645-a02f-4053-a2d6-82be3dff601d","blendMode":0,"displayName":"default","isLocked":false,"name":"6ffad645-a02f-4053-a2d6-82be3dff601d","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_susie_walk_right_upset",
+  "name":"spr_susie_walk_left_upset_1",
   "nineSlice":null,
   "origin":9,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_susie_walk_right_upset",
+    "%Name":"spr_susie_walk_left_upset_1",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_susie_walk_right_upset",
+    "name":"spr_susie_walk_left_upset_1",
     "playback":1,
     "playbackSpeed":6.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0778abbe-00d1-4023-be55-da71bbd8ac5b","path":"sprites/spr_susie_walk_right_upset/spr_susie_walk_right_upset.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0778abbe-00d1-4023-be55-da71bbd8ac5b","path":"sprites/spr_susie_walk_left_upset_1/spr_susie_walk_left_upset_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"62486dbb-ffb1-453d-853c-50b8a77526cf","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5299c4b6-c458-44ab-9da3-cb06dfec7c46","path":"sprites/spr_susie_walk_right_upset/spr_susie_walk_right_upset.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5299c4b6-c458-44ab-9da3-cb06dfec7c46","path":"sprites/spr_susie_walk_left_upset_1/spr_susie_walk_left_upset_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b5b1b08d-92e5-4d30-b207-7d8144bdc77d","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9d63d1b7-2268-40bc-b59d-e8d00cda91fa","path":"sprites/spr_susie_walk_right_upset/spr_susie_walk_right_upset.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9d63d1b7-2268-40bc-b59d-e8d00cda91fa","path":"sprites/spr_susie_walk_left_upset_1/spr_susie_walk_left_upset_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"88638a20-765d-4438-a100-90600bc1ff0b","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ad2adf62-3511-45c2-8105-c4245ed4a388","path":"sprites/spr_susie_walk_right_upset/spr_susie_walk_right_upset.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ad2adf62-3511-45c2-8105-c4245ed4a388","path":"sprites/spr_susie_walk_left_upset_1/spr_susie_walk_left_upset_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"e1f37841-9bce-44ff-803a-58ce4f35e899","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
