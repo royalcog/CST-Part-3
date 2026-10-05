@@ -103,37 +103,51 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_9":
-			scr_text("* Where do you think you're going???", "susie");
-			scr_text("* I'm right where I need to be, Lightner.", "king");
-			scr_text("* King, please just go back to your cell.", "ralsei");
-			scr_text("* Even if not that, at least stay in the castle a bit longer", "ralsei");
+			scr_text("* Where do you think you're going???", "susie", 19);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_pointright, false);
+			scr_text("* I'm right where I need to be, Lightner.", "king", 0);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
+			scr_text("* King, please just go back to your cell.", "ralsei", 40);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_smile_right, false);
+			scr_text("* Even if not that, at least stay in the castle a bit longer", "ralsei", 35);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right, false);
 				scr_text_cutoff_skip(60);
-			scr_text("* I am done following your rules, Prince.", "king");
-			scr_text("* Your kingdom has nothing to offer me.", "king");
-			scr_text("* Not even an ex-royalty package.", "king");
-			scr_text("* You think this is a joke?", "susie");
-			scr_text("* Isn't that how you go through life, Lightner?|* Everything being a joke?", "king");
-			scr_text("* All the friends you've made along your journey...", "king");
-			scr_text("* All the Darkeners that you've helped, that you've battled...", "king");
-			scr_text("* Have you ever taken any of it seriously?", "king");
-			scr_text("* Has this week of adventure just been a satire for you?", "king");
-			scr_text("* The way you all prance around, interacting with the other dark worlds...", "king");
-			scr_text("* How do you sleep at night knowing you don't have this in your OWN world", "king");
+			scr_text("* I am done following your rules, Prince.", "king", 5);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_surprised, false);
+			scr_text("* Your kingdom has nothing to offer me.", "king", 0);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
+			scr_text("* Not even an ex-royalty package.", "king", 4);
+			scr_text("* You think this is a joke?", "susie", 18);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
+			scr_text("* Isn't that how you go through life, Lightner?|* Everything being a joke?", "king", 0);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_surprised, false);
+			scr_text("* All the friends you've made along your journey...", "king", 1);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
+			scr_text("* All the Darkners that you've helped, that you've battled...", "king", 2);
+			scr_text("* Have you ever taken any of it seriously?", "king", 0);
+			scr_text("* Has this week of adventure just been a satire for you?", "king", 4);
+			scr_text("* The way you all prance around, interacting with the other dark worlds...", "king", 5);
+			scr_text("* How do you sleep at night knowing you don't have this in your OWN world", "king", 4);
 				scr_text_cutoff_skip(73);
-			scr_text("* ENOUGH.", "susie");
-			scr_text("* You think you're so special?", "susie");
-			scr_text("* Well, why don't I just go back up to the Light World...", "susie");
-			scr_text("* And tear your card in half, huh???", "susie");
-			scr_text("* How would you like that???", "susie");
-			scr_text("* Susie, you can't get to the card unless you seal the fountain...", "ralsei");
-			scr_text("* ...Damn it.", "susie");
-			scr_text("* What a foolish Lightner.", "king");
-			scr_text("* I bet your ice friend isn't much smarter than", "king");
+			scr_text("* ENOUGH.", "susie", 33);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_angry, false);
+			scr_text("* You think you're so special?", "susie", 32);
+			scr_text("* Well, why don't I just go back up to the Light World...", "susie", 31);
+			scr_text("* And tear your card in half, huh???", "susie", 33);
+			scr_text("* How would you like that???", "susie", 36);
+			scr_text("* Susie, you can't get to the card unless you seal the fountain...", "ralsei", 41);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
+			scr_text("* ...Damn it.", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
+			scr_text("* What a foolish Lightner.", "king", 4);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
+			scr_text("* I bet your ice friend isn't much smarter than", "king", 0);
 				scr_text_cutoff_skip(46);
-			scr_text("* Don't you DARE talk about Noelle.", "susie");
-			scr_text("* Or what, Susie?", "king");
-			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king");
-			scr_text("* Or will you bring her here and watch her di", "king");
+			scr_text("* Don't you DARE talk about Noelle.", "susie", 61);
+			scr_text("* Or what, Susie?", "king", 0);
+			scr_text("* Are you going to go back to your blissful ignorance of the true world?", "king", 7);
+			scr_text("* Or will you bring her here and watch her di", "king", 4);
 				scr_text_cutoff_skip(45);
 
 				global.cutscene_lock = true;
@@ -156,11 +170,11 @@ function scr_game_text(_text_id)
 
 		case "self_10":
 			global.cutscene_lock = true;
-			scr_text("* N-No...", "ralsei");
+			scr_text("* N-No...", "ralsei", 34);
 				scr_text_shake(1, 99);
-			scr_text("* You...", "ralsei");
+			scr_text("* You...", "ralsei", 35);
 				scr_text_shake(1, 99);
-			scr_text("* What have you do", "ralsei");
+			scr_text("* What have you do", "ralsei", 41);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
 				scr_text_shake(1, 99);
 				scr_text_cutoff_skip(18);
@@ -179,7 +193,7 @@ function scr_game_text(_text_id)
 			
 		case "self_11":
 			global.cutscene_lock = true;
-			scr_text("* My Knight...", "king");
+			scr_text("* My Knight...", "king", 0);
 				scr_custom_call_after_textbox_delayed(function()
 				{
 				    scr_knight_fly_in(326, 180);
@@ -192,7 +206,7 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.3);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-			scr_text("* I do not know, my Knight.|* They did not arrive with the rest of their party.", "king");
+			scr_text("* I do not know, my Knight.|* They did not arrive with the rest of their party.", "king", 5);
 			scr_text("* I need... all 3...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
@@ -213,8 +227,8 @@ function scr_game_text(_text_id)
 		
 		case "self_13":
 			global.cutscene_lock = true;
-			scr_text("* You...", "susie");
-			scr_text("* You won't get Kris...", "susie");
+			scr_text("* You...", "susie", 31);
+			scr_text("* You won't... get Kris...", "susie", 31);
 				// Knight turns around when this line shows up
 				scr_call_on_page(function() {
 				    with (obj_knight)
@@ -242,7 +256,7 @@ function scr_game_text(_text_id)
 				
 				// then down to Ralsei (4 * 0.8 * 15 = 48px)
 				scr_custom_call_after_textbox_delayed(function() {
-				    scr_char_move_now(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 15);
+				    scr_char_move_now(obj_susie, spr_susie_walk_down_neutral, true, 0, 4, 0.8, 12);
 				}, 46);
 				
 				// heal, with the charge fading in
@@ -302,13 +316,15 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_14":
-			scr_text("* You hear me?", "susie");
-				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 75)
-			scr_text("* You won't get Kris.|* You won't get any of us.", "susie");
+			scr_text("* You hear me?", "susie", 32);
+				scr_char_move_on_page(obj_susie, spr_susie_walk_up, true, 0, -4, 0.8, 15)
+				scr_obj_sprite_on_page_delayed(obj_susie, spr_susie_walk_up, false, 0, 15);
+			scr_text("* You won't get Kris.|* You won't get any of us.", "susie", 33);
 				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral, false);
-			scr_text("* This game you play?|* It won't stand.", "susie");
-			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie");
-			scr_text("* Face it.|* We're too much for you to handle.", "susie");
+			scr_text("* This game you play?|* It won't stand.", "susie", 32);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_neutral, false);
+			scr_text("* We close every fountain you open, no matter how many people you kidnap.", "susie", 33);
+			scr_text("* Face it.|* We're too much for you to handle.", "susie", 34);
 			scr_text("* Together, maybe...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
@@ -321,9 +337,9 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-			scr_text("* Nothing?", "susie");
-			scr_text("* Sorry to break it to you, pal, but we can ACT on our own.", "susie");
-			scr_text("* Haven't needed Kris to do that in a few days now.", "susie");
+			scr_text("* Nothing?", "susie", 32);
+			scr_text("* Sorry to break it to you, pal, but we can ACT on our own.", "susie", 30);
+			scr_text("* Haven't needed Kris to do that in a few days now.", "susie", 29);
 			scr_text("* You are... helpless...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
@@ -332,16 +348,28 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-			scr_text("* I...", "susie");
-			scr_text("* ...", "susie");
-			scr_text("* Ralsei, I'm sorry, but...", "susie");
-			scr_text("* Try to hold them off for a bit.", "susie");
-			scr_text("* ???", "ralsei");
-			scr_text("* I need to go.", "susie");
-			scr_text("* S-Susie! Wait!", "ralsei");
-			scr_text("* Coward.", "king");
-			scr_text("* ...", "ralsei");
-			scr_text("* Nobody calls my friend a coward.", "ralsei");
+			scr_text("* I...", "susie", 24);
+			scr_text("* ...", "susie", 31);
+			scr_text("* Ralsei, I'm sorry, but...", "susie", 27);
+			scr_text("* Try to hold them off for a bit.", "susie", 41);
+			scr_text("* ???", "ralsei", 50);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_shocked, false);
+			scr_text("* I need to go.", "susie", 31);
+				scr_set_var_on_page(obj_susie, "depth", "-3001")
+				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_upset, true, 0, 4, .8, 15);
+				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left_upset, true, -4, 0, .8, 85);
+				scr_obj_sprite_after_textbox_delayed(obj_susie, spr_susie_walk_left_upset, false, 160);
+				scr_obj_sprite_after_textbox_delayed(obj_ralsei, spr_ralsei_walk_left_neutral, false, 110);
+		break;
+		
+		case "self_15":
+			scr_text("* S-Susie! Wait!", "ralsei", 42);
+				scr_set_var_on_page(obj_susie, "depth", "-2000")
+			scr_text("* Coward.", "king", 0);
+			scr_text("* ...", "ralsei", 45);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_left_annoyed_little, false);
+			scr_text("* Nobody calls my friend a coward.", "ralsei", 44);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_right_annoyed_more, false);
 		break;
 		
 		
