@@ -1210,7 +1210,7 @@ if ralsei_solo_state == 3
                 { speaker: obj_knight, text: "...",      cps: _rk_cps },
                 { speaker: obj_knight, text: "Yes...",   cps: _rk_cps, snd: snd_knight_phone_call },
                 { speaker: obj_king,   text: "How did you learn this tactic, Prince?" },
-                { speaker: obj_ralsei, text: "Saw it from a flower." },
+                { speaker: obj_ralsei, text: "Saw a flower do it." },
                 { speaker: obj_knight, text: "...",      cps: _rk_cps }
             ]
         }

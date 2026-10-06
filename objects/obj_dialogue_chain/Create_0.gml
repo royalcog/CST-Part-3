@@ -34,7 +34,7 @@ offy[CharID.Friend] = 35;
 offx[CharID.Queen] = 70; // placeholder — tune to taste
 offy[CharID.Queen] = -67;
 offx[CharID.King] = 35; // placeholder — tune to taste
-offy[CharID.King] = 93;
+offy[CharID.King] = 95;
 offx[CharID.Knight] = -120; // placeholder — tune to taste
 offy[CharID.Knight] = 80;
 

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Susie",
-    "path":"folders/Sprites/Characters/Susie.yy",
+    "name":"Dark World",
+    "path":"folders/Sprites/Characters/Susie/Dark World.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

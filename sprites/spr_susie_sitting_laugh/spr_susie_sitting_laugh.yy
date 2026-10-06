@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"Sitting",
-    "path":"folders/Sprites/Characters/Susie/Sitting.yy",
+    "path":"folders/Sprites/Characters/Susie/Dark World/Sitting.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

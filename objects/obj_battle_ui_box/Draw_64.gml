@@ -87,6 +87,8 @@ draw_rectangle_color(_bx, _by, _bx + _bw * _pct, _by + _bh, bar_fill_color, bar_
 // HP number — current sits right-aligned before the baked slash, max sits left-aligned after it
 // each digit is forced to hp_digit_w x hp_digit_h px (native), hp_digit_gap px apart
 draw_set_font(hp_font);
+draw_set_color(c_white); // don't inherit whatever the last GUI drawer left set (TALKbox leaves c_black)
+draw_set_alpha(1);
 
 var _cy = _sy + hp_text_offset_y * _scale_y * _s + hp_digit_y_offset * _scale_y;
 var _cx = _sx + hp_current_x * _scale_x * _s;

@@ -82,3 +82,6 @@ for (var i = 0; i <= 9; i++)
     shown = string_replace_all(shown, "#" + string(i), "");
 }
 draw_text_ext(x1, y1, shown, line_sep, wrap_w);
+
+draw_set_color(c_white);
+draw_set_alpha(1);

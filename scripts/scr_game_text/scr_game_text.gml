@@ -402,15 +402,144 @@ function scr_game_text(_text_id)
 				}, 0);
 		break;
 		
+		case "self_18":
+			scr_snd_after_textbox(snd_phone_ring, 1);
+			scr_snd_after_textbox_delayed(snd_phone_ring, 1, 120);
+			scr_snd_after_textbox_delayed(snd_phone_ring, 1, 240);
+			scr_snd_after_textbox_delayed(snd_item, 1, 400);
+		break;
+		
+		case "self_19":
+			scr_text("* ...", "susie", 24);
+			scr_text("* Hey.", "susie", 23);
+			scr_text("* I assume you're asleep now, but...", "susie", 27);
+			scr_text("* You can listen to this in the morning.", "susie", 28);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+		break;
+		
+		case "self_20":
+			scr_text("* She'll be safe.", "susie", 32);
+			scr_text("* She's gotta be safe, right?", "susie", 27);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* I didn't see her fight, but...", "susie", 13);
+			scr_text("* She can handle herself well.", "susie", 23);
+			scr_text("* Or at least, that's what you made it seem like the other day.", "susie", 27);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* I can't...", "susie", 24);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* I won't be able to live with myself if she...", "susie", 23);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* But she won't, right?", "susie", 32);
+			scr_text("* She managed to make it, even when she didn't know where she was...", "susie", 27);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* Damn it, Kris...", "susie", 31);
+			scr_text("* She wasn't there against our battle with Queen.", "susie", 39);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* She wasn't there when we fought Spamton...", "susie", 37);
+			scr_text("* How do I know?", "susie", 39);
+			scr_text("* How do I know she's strong enough?", "susie", 38);
+			scr_text("* She doesn't...", "susie", 36);
+			scr_text("* She doesn't have any armor, or weapons, or anything...", "susie", 38);
+			scr_text("* And how...", "susie", 40);
+			scr_text("* How did King know she was coming???", "susie", 42);
+			scr_text("* How did he know she has ice powers??? ", "susie", 43);
+			scr_text("* I don't even think...", "susie", 24);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* I don't think I knew that.", "susie", 32);
+			scr_text("* Did...", "susie", 32);
+			scr_text("* ...", "susie", 31);
+			scr_text("* Did you?", "susie", 62);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* I don't know if I can do this, Kris.", "susie", 32);
+			scr_text("* She's too fragile, and...", "susie", 13);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* I know she's brave,", "susie", 56);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_happy_dark, false);
+				scr_text_cutoff_skip(21);
+			scr_text("* and funny,", "susie", 56);
+				scr_text_cutoff_skip(12);
+			scr_text("* and smart,", "susie", 56);
+				scr_text_cutoff_skip(12);
+			scr_text("* and sweet,", "susie", 56);
+				scr_text_cutoff_skip(12);
+			scr_text("* and caring,", "susie", 56);
+				scr_text_cutoff_skip(13);
+			scr_text("* and kind,", "susie", 56);
+				scr_text_cutoff_skip(11);
+			scr_text("* and everything you want in a person, but...", "susie", 56);
+			scr_text("* ...", "susie", 24);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* Heh, this message is pretty long already.", "susie", 20);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_happy_dark, false);
+			scr_text("* I'll, uh...", "susie", 13);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* You'll tell me what you think of all of this, won't you?", "susie", 23);
+			scr_text("* ...", "susie", 24);
+			scr_text("* And, uh...", "susie", 27);
+			scr_text("* Thank you, Kris.", "susie", 28);
+			scr_text("* For...", "susie", 27);
+			scr_text("* For staying on our side.|* Through everything.", "susie", 23);
+			scr_text("* See you in the morning.", "susie", 9);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_happy_dark, false);
+			scr_text("* (Click...)", "empty");
+		break;
+		
+		case "self_21":
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* I...", "susie", 32);
+			scr_text("* ...", "susie", 31);
+			scr_text("* Noelle...", "susie", 31);
+			scr_text("* I don't really pray, but...", "susie", 32);
+			scr_text("* Please be okay.", "susie", 28);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
+			scr_text("* Let the Angel make it so.", "susie", 27);
+			scr_text("* ...", "susie", 31);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
+			scr_text("* Wait, crap!|* Ralsei's still alone!", "susie", 15);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_surprised_dark, false);
+				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left_l_dark, true, -4, 0, .8, 40);
+				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_l_dark, true, 0, 4, 1.2, 90);
+		break;
+		
+		case "self_22":
+			scr_fade_warp_with_music(rm_empty, 240, sng_empty);
+		break;
+		
+		case "self_23":
+			scr_text("* Your worlds, your adventures, are all just corrupted visions of reality.", "friend");
+			scr_text("* The Prince of Darkness...|* Oh, the Prince of Darkness.", "friend");
+			scr_text("* He has been withholding countless scraps of information the heroes need.", "friend");
+			scr_text("* His true power is soon to be reckoned with.", "friend");
+			scr_text("* ...", "friend");
+			scr_text("* The Cage...", "friend");
+			scr_text("* Well, you know how the Cage fits into the Prophecy, don't you?", "friend");
+			scr_text("* ...", "friend");
+			scr_text("* And the MONSTER that accompanies them...", "friend");
+			scr_text("* ...", "friend");
+		break;
+		
 		
 /*
-
-(Susie runs off)
-Ralsei: S-Susie! Wait!
-King: Coward.
-Ralsei: ...
-Ralsei: Nobody calls my friend a coward.
-(A battle begins)
+(Friend Crossover)
+Friend: Your worlds, your adventures, are all just corrupted visions of reality.
+Friend: The Prince of Darkness... Oh, the Prince of Darkness.
+Friend: He has been withholding countless scraps of information the heroes need.
+Friend: His true power is soon to be reckoned with.
+Friend: ...
+Friend: The Cage...
+Friend: Well, you know how the Cage fits into the Prophecy, don't you?
+Friend: ...
+Friend: And the MONSTER that accompanies them...
+Friend: ...
 */
 
 
