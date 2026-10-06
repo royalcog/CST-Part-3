@@ -53,6 +53,28 @@ function scr_set_sprite_keep_feet(_obj, _sprite)
     _obj.last_sprite = _sprite; // already re-anchored, so End Step doesn't do it again
 }
 
+/// same idea as scr_set_sprite_keep_feet, but lines up the bottom-center of the
+/// *visible pixels* (bbox) instead of the whole canvas — for sprites like Ralsei's
+/// battle ones whose canvas is a lot wider/taller than his body
+function scr_set_sprite_keep_body(_obj, _sprite, _anim_loop = false)
+{
+    if (!instance_exists(_obj)) exit;
+    with (_obj)
+    {
+        var _old = sprite_index;
+        var _fx = x + ((sprite_get_bbox_left(_old) + sprite_get_bbox_right(_old) + 1) / 2 - sprite_get_xoffset(_old)) * image_xscale;
+        var _fy = y + (sprite_get_bbox_bottom(_old) + 1 - sprite_get_yoffset(_old)) * image_yscale;
+        x = _fx - ((sprite_get_bbox_left(_sprite) + sprite_get_bbox_right(_sprite) + 1) / 2 - sprite_get_xoffset(_sprite)) * image_xscale;
+        y = _fy - (sprite_get_bbox_bottom(_sprite) + 1 - sprite_get_yoffset(_sprite)) * image_yscale;
+
+        sprite_index = _sprite;
+        last_sprite  = _sprite; // already placed, End Step shouldn't nudge it again
+        image_index  = 0;
+        image_speed  = _anim_loop ? 1 : 0;
+        anim_loop    = _anim_loop;
+    }
+}
+
 /// after Susie's swoon: fell sprite, knocked back to where she jumped from, screen shake
 function scr_susie_knockback()
 {

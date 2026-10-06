@@ -380,6 +380,10 @@ function scr_game_text(_text_id)
 			scr_text("* ???", "ralsei", 50);
 				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_shocked, false);
 			scr_text("* I need to go.", "susie", 31);
+				// remember where she was standing, she walks back to this exact spot later
+				scr_call_on_page(function() {
+				    global.susie_battle_home = { x: obj_susie.x, y: obj_susie.y };
+				}, 1, global.page_number - 1);
 				scr_set_var_on_page(obj_susie, "depth", "-3001")
 				scr_char_move_after_textbox(obj_susie, spr_susie_walk_down_upset, true, 0, 4, .8, 17);
 				scr_char_move_after_textbox(obj_susie, spr_susie_walk_left_upset, true, -4, 0, .8, 85);
@@ -524,22 +528,44 @@ function scr_game_text(_text_id)
 			scr_text("* Well, you know how the Cage fits into the Prophecy, don't you?", "friend");
 			scr_text("* ...", "friend");
 			scr_text("* And the MONSTER that accompanies them...", "friend");
-			scr_text("* ...", "friend");
+						scr_text("* ...", "friend");
+			
+				// back to the stall fight: Knight gets re-spawned while it's still black,
+				// and its setup rebuilds the battle exactly how it was left
+				scr_fade_warp_with_music(rm_one, 240, noone, 1, 1000, 500, 0, [
+				    scr_make_warp_spawn(obj_knight, 0, 0, "Instances", function(_k) {
+				        scr_ralsei_battle_restore(_k);
+				    })
+				]);
+		break;
+		
+		case "self_24":
+			scr_text("* Y-You can't just...", "ralsei");
+			scr_text("* How did you...", "ralsei");
+			scr_text("* You know... what they call me...", "knight");
+				scr_text_slow(0.35);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* What're they talking about???", "susie");
+			scr_text("* ...", "ralsei");
+			scr_text("* Now...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
 		break;
 		
 		
 /*
-(Friend Crossover)
-Friend: Your worlds, your adventures, are all just corrupted visions of reality.
-Friend: The Prince of Darkness... Oh, the Prince of Darkness.
-Friend: He has been withholding countless scraps of information the heroes need.
-Friend: His true power is soon to be reckoned with.
-Friend: ...
-Friend: The Cage...
-Friend: Well, you know how the Cage fits into the Prophecy, don't you?
-Friend: ...
-Friend: And the MONSTER that accompanies them...
-Friend: ...
+Susie: What're they talking about???
+Ralsei: ...
+RK: Now...
+SWOON on Ralsei
+SWOON on Susie
+King: Shall we do what was planned, my Knight?
+RK: Stay here...
+RK: Stand guard until we are prepared...
+King: Of course.
+(RK flies offscreen)
 */
 
 

@@ -284,9 +284,10 @@ switch (state)
 	    {
 	        if (end_warp_room == noone)
 	        {
-	            state = "battle_end";
+	            state = end_stop_battle ? "stop_battle" : "battle_end";
 	            break;
 	        }
+	        if (on_end_warp != noone) on_end_warp();
 	        // above the TALKbox (-9999) and the UI so everything goes black together
 	        var _fader = instance_create_depth(0, 0, -10004, obj_cutscenefade);
 	        _fader.fade_target = 1;
@@ -300,6 +301,31 @@ switch (state)
 	// nothing to do: the room change destroys this sequencer (it's not persistent)
 	case "end_warp_wait":
 	
+	break;
+
+	// battle gets stopped where it stands: UI slides off, music fades, sprites swap back
+	case "stop_battle":
+	    scr_ui_hide();
+	    if (global.music != noone) audio_sound_gain(global.music, 0, stop_music_fade_ms);
+	    for (var i = 0; i < array_length(end_revert); i++)
+	    {
+	        scr_set_sprite_keep_body(end_revert[i].obj, end_revert[i].sprite);
+	    }
+	    timer = stop_battle_frames;
+	    state = "stop_battle_wait";
+	break;
+
+	case "stop_battle_wait":
+	    timer--;
+	    if (timer <= 0)
+	    {
+	        if (global.music != noone) audio_stop_sound(global.music);
+	        global.music = noone;
+	        global.song  = noone; // so start_battle_music() works again next fight
+	        with (obj_battle_ui_box) instance_destroy();
+	        with (obj_UI) instance_destroy();
+	        state = "battle_end"; // sequencer goes away -> Z works again for the next self_ line
+	    }
 	break;
 
 	// spawns the real barrage if this round has one configured; otherwise

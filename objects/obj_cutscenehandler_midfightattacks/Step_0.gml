@@ -1153,44 +1153,13 @@ if ralsei_solo_state == 3
         }
     }
 
-    instance_create_depth(0, 0, -100, obj_UI);
     start_battle_music();
-
-    // only Ralsei's box, same box_offset_x as the full-party layout,
-    // so it sits in the middle slot as if Susie and Queen were on either side
-    scr_party_init([
-    {
-        name: "Ralsei", hp: 210, max_hp: 210, body: obj_ralsei, body_hurt_sprite: spr_ralsei_shocked,
-        box_offset_x: 236, box_offset_y: 0,
-        sprite_frame: spr_ralseibox_empty, hurt_frame: spr_ralseibox_hurtempty,
-        frame_scale: 42 / 153, divider_y: 153,
-        bar_offset_x: 513, bar_offset_y: 85, bar_width: 304, bar_height: 36,
-        bar_fill_color: make_color_rgb(1, 255, 0),
-        hp_current_x: 639, hp_max_x: 698, hp_text_offset_y: 33,
-        hurt_flash_time: 20,
-        attack_frame: spr_ralseibox_attack_empty,
-        icon_rect_x: 36, icon_rect_y: 21, icon_rect_w: 137, icon_rect_h: 101, hurt_icon_scale: 0.95
-    }
-    ]);
-    obj_UI.active_box = noone; // nobody's turn, box rests lowered the whole time
-	// the full 3-box panel sits ~42px right of center; with only Ralsei's box showing
-    // that's obvious, so center his box on screen for this fight
-    var _cam_cx = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]) / 2;
-    var _box_w  = sprite_get_width(spr_ralseibox_empty) * (42 / 153);
-    var _box_cx = obj_UI.target_x + 236 + obj_UI.boxes_x_correction + _box_w / 2;
-    var _ui_shift = _cam_cx - _box_cx; // ≈ -42
-    obj_UI.target_x   += _ui_shift;
-    obj_UI.onscreen_x += _ui_shift;
-
-    // panel behind, box on top, both above everything else in the GUI layer
-    // (TALKbox -9999, textbox -10000, swoon -10001)
-    obj_UI.depth = -10002;
-    obj_UI.panel_full_width = true;
-    with (obj_battle_ui_box) depth = -10003;
+    scr_ralsei_solo_ui_setup(false);
 	
     with (obj_king_turn_sequencer) instance_destroy();
     var _seq = instance_create_depth(0, 0, 0, obj_king_turn_sequencer);
     _seq.dialogue_only = true;
+    _seq.on_end_warp = function() { scr_ralsei_battle_snapshot(); }; // remember the battle so we can come back to it
     _seq.end_warp_room = rm_two;      // <- room to fade into, swap for the real one
     _seq.end_warp_song = noone;       // <- music for the other side (noone = silence)
 	_seq.end_warp_wait = 240; // frames held on black before the next room loads

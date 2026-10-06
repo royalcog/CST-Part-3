@@ -54,3 +54,12 @@ end_warp_room = noone;
 end_warp_song = noone;
 end_warp_hold = 30;  // frames between the last line closing and the fade starting
 end_warp_wait = 60;  // frames held on black before the new room fades in
+
+on_end_warp = noone; // optional function, runs right before the end fade starts (e.g. snapshot the battle)
+
+// dialogue-only mode with no end_warp_room: stop the battle in place instead of just vanishing
+// (UI slides away, music fades, end_revert sprites swap back) — e.g. the Knight ending Ralsei's stall
+end_stop_battle    = false;
+end_revert         = [];  // [ { obj, sprite }, ... ] swapped in keeping the body planted
+stop_battle_frames = 45;  // how long the UI gets to slide off before everything's cleaned up
+stop_music_fade_ms = 600;
