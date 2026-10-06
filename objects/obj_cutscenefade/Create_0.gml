@@ -25,3 +25,5 @@ music_lead_timer = 0;
 
 spawn_list = [];
 has_spawned = false;
+
+old_music_inst = noone;

@@ -3,6 +3,7 @@ display_set_gui_size(camera_get_view_width(view_camera[0]), camera_get_view_heig
 // 1. Initialize Globals FIRST before using them anywhere
 
 // Testing Globals
+/*
 if (!variable_global_exists("dialogue_self"))
 {
     variable_global_set("dialogue_self", 7);
@@ -151,3 +152,15 @@ if (instance_exists(_gerson))
     _gerson.light_on = true;
 }
 */
+
+// 4. Room music
+// Lancer's song in the cafe
+if (room == rm_zero && !audio_is_playing(sng_LCP))
+{
+    // the room's opening fader would otherwise fade this out right away
+    with (obj_cutscenefade) old_music_faded = true;
+
+    global.music = scr_audio_fade_in(sng_LCP, 2000, 1, true); // 2s fade in, looping
+    global.song = sng_LCP;
+    global.song_start = current_time;
+}

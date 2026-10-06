@@ -63,7 +63,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_4":
-			scr_fade_warp_with_music(rm_empty, 240, sng_empty);
+			scr_fade_warp_with_music(rm_empty, 240, sng_empty, 1, 1000, 2000);
 		break;
 		
 		case "self_5":
@@ -92,7 +92,7 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_7":
-			scr_fade_warp_with_music(rm_one, 240, sng_empty);
+			scr_fade_warp_with_music(rm_one, 240, sng_cardjail, 1, 2000);
 		break;
 		
 		case "self_8":
@@ -165,6 +165,13 @@ function scr_game_text(_text_id)
 				// shortly after snd_boost's main hit dies down: swoon, then knockback when it ends
 				scr_custom_call_after_textbox_delayed(function()
 				{
+				    // Card Jail cuts out hard right as the swoon lands
+				    if (global.music != noone)
+				    {
+				        audio_stop_sound(global.music);
+				        global.music = noone;
+				        global.song = noone;
+				    }
 				    scr_swoon(spr_roark_slash_susie_1, 180, scr_susie_knockback);
 				}, 40);
 		break;
@@ -508,7 +515,7 @@ function scr_game_text(_text_id)
 		
 		case "self_21":
 			scr_text("* ...", "susie", 31);
-				global.audio_sound_gain(music_inst, 0, 2000);
+				audio_sound_gain(global.music_inst, 0, 2000);
 				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
 			scr_text("* I...", "susie", 32);
 			scr_text("* ...", "susie", 31);

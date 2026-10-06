@@ -1,10 +1,11 @@
 if (fade_target == 1)
 {
     if (!old_music_faded && global.music != noone)
-    {
-        audio_sound_gain(global.music, 0, old_music_fade_time);
-        old_music_faded = true;
-    }
+	{
+	    old_music_inst = global.music;
+	    audio_sound_gain(global.music, 0, old_music_fade_time);
+	    old_music_faded = true;
+	}
 
     if (fade_alpha < 1)
     {
@@ -39,10 +40,16 @@ if (fade_target == 1)
             else
             {
                 // Original behavior: change rooms
-                if (room != target_room)
-                {
-                    room_goto(target_room);
-                }
+               if (room != target_room)
+				{
+				    // old track is silent by now, actually stop it
+				    if (old_music_inst != noone)
+				    {
+				        audio_stop_sound(old_music_inst);
+				        old_music_inst = noone;
+				    }
+				    room_goto(target_room);
+				}
                 else 
                 {
                     // NEW: Once we are successfully in the target room, start fading in!
