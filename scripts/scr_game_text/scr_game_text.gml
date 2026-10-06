@@ -429,6 +429,11 @@ function scr_game_text(_text_id)
 		
 		case "self_20":
 			scr_text("* She'll be safe.", "susie", 32);
+				// Play the track starting silent (gain 0), looping
+				global.music_inst = audio_play_sound(sng_doalg, 10, true, 0);
+
+				// Fade up to full volume over 2000 ms (2 seconds)
+				audio_sound_gain(global.music_inst, 1, 2000);
 			scr_text("* She's gotta be safe, right?", "susie", 27);
 				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_dark, false);
 			scr_text("* I didn't see her fight, but...", "susie", 13);
@@ -503,6 +508,7 @@ function scr_game_text(_text_id)
 		
 		case "self_21":
 			scr_text("* ...", "susie", 31);
+				global.audio_sound_gain(music_inst, 0, 2000);
 				scr_obj_sprite_on_page(obj_susie, spr_susie_sit_head_down_upset_dark, false);
 			scr_text("* I...", "susie", 32);
 			scr_text("* ...", "susie", 31);
@@ -695,30 +701,13 @@ function scr_game_text(_text_id)
 			scr_text("* Damn it.", "king", 5);
 		break;
 		
+		case "self_28":
+			scr_fade_warp_with_music(rm_empty, 240, sng_empty);
+		break;
+		
 		
 /*
-Susie: D-Damn it...
-King: Your time is over, Lightner.
-King: Your world is long overdue for a change of scenery.
-King: Or, in more definitive terms, a blanket of shadow.
-Ralsei: King, please... You don't need to do this...
-Ralsei: Everyone is happy here... Lancer is happy here...
-Ralsei: Why do you want to destroy everything we've built here...?
-King: Before you jump to dull conclusions, Prince, not everyone is happy here.
-Susie: How selfish can you be?
-King: Selfish? I am not the sole proprietor of unhappiness down here.
-Susie: Find us one other person.
-King: ...
-Susie: Cat got your tongue, King
-King: Quiet.
-King: Permit me time to think.
-Ralsei: You...
-Susie: ...
-Susie: Lancer?
-King: Lancer...
-(King turns around when saying Lancer)
-Susie: C'mon, dude!
-(Susie and Ralsei run away)
+
 */
 
 
