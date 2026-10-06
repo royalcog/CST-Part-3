@@ -96,6 +96,7 @@ function scr_susie_knockback()
 
 /// the hit/fall sound stack when a character drops into their fell/defeat sprite
 /// _scale: multiplier on every layer's volume (1 = the original screenshot values)
+/// returns the playing sound instances, so the crash can be cut off later (scr_stop_sounds)
 function scr_swoon_fall_sounds(_scale = 0.75)
 {
     var _layers = [
@@ -108,10 +109,23 @@ function scr_swoon_fall_sounds(_scale = 0.75)
         [snd_glassbreak,    0.6, 0.3]
     ];
 
+    var _playing = [];
     for (var i = 0; i < array_length(_layers); i++)
     {
         var _snd = audio_play_sound(_layers[i][0], 10, false);
         audio_sound_gain(_snd, _layers[i][1] * _scale, 0);
         audio_sound_pitch(_snd, _layers[i][2]);
+        array_push(_playing, _snd);
+    }
+    return _playing;
+}
+
+/// stops every sound instance in an array (e.g. what scr_swoon_fall_sounds returned)
+function scr_stop_sounds(_sounds)
+{
+    if (!is_array(_sounds)) exit;
+    for (var i = 0; i < array_length(_sounds); i++)
+    {
+        audio_stop_sound(_sounds[i]);
     }
 }

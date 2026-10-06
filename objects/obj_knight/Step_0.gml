@@ -78,19 +78,40 @@ if reverse_phase == 1
         image_speed = 1;
         anim_loop = true;
         ball_phase = 0;
+
+        // face the way he's leaving. origin is top-left, so flipping needs the same
+        // in-place nudge as self_15's turn-around or he'd jump a whole sprite-width
+        if (sign(image_xscale) != exit_dir)
+        {
+            x += sprite_get_width(sprite_index) * image_xscale;
+            image_xscale = -image_xscale;
+        }
         reverse_phase = 2;
     }
 }
 
 if reverse_phase == 2
 {
-	image_xscale = -2;
-	x -= 5;
-    ball_target_x = -120;
-    if x <= ball_target_x
+    x += ball_speed * exit_dir;
+
+    // visible edges of the ball in room space, so "gone" means not a single pixel left on screen
+    var _xo = sprite_get_xoffset(sprite_index);
+    var _e1 = x + (sprite_get_bbox_left(sprite_index) - _xo) * image_xscale;
+    var _e2 = x + (sprite_get_bbox_right(sprite_index) + 1 - _xo) * image_xscale;
+    var _cx = camera_get_view_x(view_camera[0]);
+    var _gone = (exit_dir < 0)
+        ? (max(_e1, _e2) < _cx)
+        : (min(_e1, _e2) > _cx + camera_get_view_width(view_camera[0]));
+
+    if (_gone)
     {
-        x = ball_target_x;
-		reverse_phase = 0;
+        reverse_phase = 0;
+        if (on_exit != undefined)
+        {
+            var _cb = on_exit;
+            on_exit = undefined;
+            _cb();
+        }
         return;
     }
 }

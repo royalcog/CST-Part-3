@@ -103,7 +103,7 @@ function scr_inst_snapshot(_obj)
         extra: {}
     };
     // object-specific state (Knight's hover, anim freeze flags, etc.) — only if the instance has it
-    var _names = ["anim_loop", "start_y", "ball_phase", "bob_angle", "ball_target_x"];
+    var _names = ["anim_loop", "start_y", "ball_phase", "bob_angle", "ball_target_x", "ball_speed", "exit_dir"];
     for (var n = 0; n < array_length(_names); n++)
     {
         if (variable_instance_exists(_i, _names[n]))

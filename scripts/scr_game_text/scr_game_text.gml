@@ -165,7 +165,7 @@ function scr_game_text(_text_id)
 				// shortly after snd_boost's main hit dies down: swoon, then knockback when it ends
 				scr_custom_call_after_textbox_delayed(function()
 				{
-				    scr_swoon(spr_roark_slash_susie, 180, scr_susie_knockback);
+				    scr_swoon(spr_roark_slash_susie_1, 180, scr_susie_knockback);
 				}, 40);
 		break;
 
@@ -552,6 +552,55 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
+				
+				global.cutscene_lock = true; // no Z until both of them are down
+				
+				// swoon on Ralsei -> he crashes down -> half a second later, swoon on Susie
+				// (which cuts Ralsei's crash off) -> she crashes down
+				scr_custom_call_after_textbox_delayed(function()
+				{
+				    scr_swoon(spr_roark_slash_ralsei, 180, function()
+				    {
+				        scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_defeat);
+				        var _crash = scr_swoon_fall_sounds();
+				        scr_camera_shake(4, 20);
+				        
+				        scr_call_after_frames(method({ crash: _crash }, function()
+				        {
+				            scr_stop_sounds(crash);
+				            scr_swoon(spr_roark_slash_susie, 180, function()
+				            {
+				                scr_set_sprite_keep_feet(obj_susie, spr_susie_fell);
+				                scr_swoon_fall_sounds();
+				                scr_camera_shake(4, 20);
+				                global.cutscene_lock = false;
+				            });
+				        }), 30); // ~0.5s
+				    });
+				}, 1);
+		break;
+		
+		case "self_25":
+			scr_text("* Shall we do what was planned, my Knight?", "king", 0);
+			scr_text("* Stay here...", "knight");
+				scr_text_slow(0.2);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* Stand guard until we are prepared...", "knight");
+				scr_text_slow(0.3);
+				scr_text_shake(1, 99);
+				scr_snd_on_page(snd_knight_phone_call, 1);
+			scr_text("* Of course.", "king", 5);
+			
+				global.cutscene_lock = true; // locked until he's fully gone
+				
+				// back into the ball, then off the way he came in
+				scr_custom_call_after_textbox_delayed(function()
+				{
+				    if (!instance_exists(obj_knight)) { global.cutscene_lock = false; exit; }
+				    obj_knight.on_exit = function() { global.cutscene_lock = false; };
+				    scr_knight_to_ball();
+				}, 1);
 		break;
 		
 		
