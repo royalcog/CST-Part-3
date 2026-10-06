@@ -540,14 +540,16 @@ function scr_game_text(_text_id)
 		break;
 		
 		case "self_24":
-			scr_text("* Y-You can't just...", "ralsei");
-			scr_text("* How did you...", "ralsei");
+			scr_text("* Y-You can't just...", "ralsei", 55);
+			scr_text("* How did you...", "ralsei", 57);
 			scr_text("* You know... what they call me...", "knight");
 				scr_text_slow(0.35);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-			scr_text("* What're they talking about???", "susie");
-			scr_text("* ...", "ralsei");
+			scr_text("* What're they talking about???", "susie", 42);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_right_neutral_lookback, false);
+			scr_text("* ...", "ralsei", 45);
+				scr_obj_sprite_on_page(obj_ralsei, spr_ralsei_head_down_sad, false);
 			scr_text("* Now...", "knight");
 				scr_text_slow(0.2);
 				scr_text_shake(1, 99);
@@ -568,7 +570,7 @@ function scr_game_text(_text_id)
 				        scr_call_after_frames(method({ crash: _crash }, function()
 				        {
 				            scr_stop_sounds(crash);
-				            scr_swoon(spr_roark_slash_susie, 180, function()
+				            scr_swoon(spr_roark_slash_susie_2, 180, function()
 				            {
 				                scr_set_sprite_keep_feet(obj_susie, spr_susie_fell);
 				                scr_swoon_fall_sounds();
@@ -590,7 +592,7 @@ function scr_game_text(_text_id)
 				scr_text_slow(0.3);
 				scr_text_shake(1, 99);
 				scr_snd_on_page(snd_knight_phone_call, 1);
-			scr_text("* Of course.", "king", 5);
+			scr_text("* Of course.", "king", 4);
 			
 				global.cutscene_lock = true; // locked until he's fully gone
 				
@@ -605,16 +607,28 @@ function scr_game_text(_text_id)
 		
 		
 /*
-Susie: What're they talking about???
-Ralsei: ...
-RK: Now...
-SWOON on Ralsei
-SWOON on Susie
-King: Shall we do what was planned, my Knight?
-RK: Stay here...
-RK: Stand guard until we are prepared...
-King: Of course.
-(RK flies offscreen)
+Susie: D-Damn it...
+King: Your time is over, Lightner.
+King: Your world is long overdue for a change of scenery.
+King: Or, in more definitive terms, a blanket of shadow.
+Ralsei: King, please... You don't need to do this...
+Ralsei: Everyone is happy here... Lancer is happy here...
+Ralsei: Why do you want to destroy everything we've built here...?
+King: Before you jump to dull conclusions, Prince, not everyone is happy here.
+Susie: How selfish can you be?
+King: Selfish? I am not the sole proprietor of unhappiness down here.
+Susie: Find us one other person.
+King: ...
+Susie: Cat got your tongue, King
+King: Quiet.
+King: Permit me time to think.
+Ralsei: You...
+Susie: ...
+Susie: Lancer?
+King: Lancer...
+(King turns around when saying Lancer)
+Susie: C'mon, dude!
+(Susie and Ralsei run away)
 */
 
 
