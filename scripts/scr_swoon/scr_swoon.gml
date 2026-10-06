@@ -30,6 +30,19 @@ function scr_get_feet(_obj)
     }
 }
 
+/// bottom-center of the *visible pixels* (bbox) — where the body actually is,
+/// even in sprites with lots of empty canvas (like Ralsei's defeat/fall ones)
+function scr_get_body(_obj)
+{
+    with (_obj)
+    {
+        return {
+            x: x + ((sprite_get_bbox_left(sprite_index) + sprite_get_bbox_right(sprite_index) + 1) / 2 - sprite_get_xoffset(sprite_index)) * image_xscale,
+            y: y + (sprite_get_bbox_bottom(sprite_index) + 1 - sprite_get_yoffset(sprite_index)) * image_yscale
+        };
+    }
+}
+
 /// x/y an instance needs so _sprite's bottom-center lands on (_fx, _fy)
 function scr_feet_to_xy(_obj, _sprite, _fx, _fy)
 {
@@ -205,9 +218,8 @@ function scr_susie_heal_ralsei(_on_done = undefined)
         _f.duration = 60;
         _f.on_finish = function()
         {
-            // Ralsei gets up (his body sits ~21px left of center in spr_ralsei_defeat)
-            scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_shocked);
-            obj_ralsei.x -= 21 * obj_ralsei.image_xscale;
+            // Ralsei gets up right where his body is lying (spr_ralsei_fall_wince -> shocked)
+            scr_set_sprite_keep_body(obj_ralsei, spr_ralsei_shocked);
 
             with (obj_susie)
             {

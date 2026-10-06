@@ -287,8 +287,9 @@ function scr_game_text(_text_id)
 				// heal, with the charge fading in
 				scr_custom_call_after_textbox_delayed(function() {
 				    // remember where her feet were next to downed Ralsei, so the second heal lines up the same
-				    var _sf = scr_get_feet(obj_susie);
-				    global.susie_heal_offset = { dx: _sf.x - obj_ralsei.x, dy: _sf.y - obj_ralsei.y };
+					var _sf = scr_get_feet(obj_susie);
+				    var _rb = scr_get_body(obj_ralsei);
+				    global.susie_heal_offset = { dx: _sf.x - _rb.x, dy: _sf.y - _rb.y };
 				    
 				    with (obj_susie)
 				    {
@@ -567,7 +568,8 @@ function scr_game_text(_text_id)
 				{
 				    scr_swoon(spr_roark_slash_ralsei, 180, function()
 				    {
-				        scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_defeat);
+						scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_fall_wince);
+						scr_set_sprite_keep_feet(obj_susie, spr_susie_shocked);
 				        var _crash = scr_swoon_fall_sounds();
 				        scr_camera_shake(4, 20);
 				        
@@ -576,7 +578,8 @@ function scr_game_text(_text_id)
 				            scr_stop_sounds(crash);
 				            scr_swoon(spr_roark_slash_susie_2, 180, function()
 				            {
-				                scr_set_sprite_keep_feet(obj_susie, spr_susie_fell);
+								scr_set_sprite_keep_feet(obj_susie, spr_susie_landed);
+				                scr_swoon_fall_sounds();
 				                scr_swoon_fall_sounds();
 				                scr_camera_shake(4, 20);
 				                global.cutscene_lock = false;
@@ -611,6 +614,14 @@ function scr_game_text(_text_id)
 		
 		case "self_26":
 			scr_text("* D-Damn it...", "susie", 31);
+			scr_text("* Your time is over, Lightner.", "king", 0);
+			scr_text("* Your world is long overdue for a change of scenery.", "king", 5);
+			scr_text("* Or, in more definitive terms, a blanket of shadow.", "king", 4);
+			scr_text("* King, please...|* You don't need to do this...", "ralsei", 34);
+			scr_text("* Everyone is happy here...|* Lancer is happy here...", "ralsei", 35);
+			scr_text("* Why do you want to destroy everything we've built here...?", "ralsei", 41);
+			scr_text("* Before you jump to dull conclusions, Prince, not everyone is happy here.", "king", 5);
+			scr_text("* How selfish can you be?", "susie", 33);
 				// she gets back up (anim plays once, holds on the last frame)
 				scr_call_on_page(function() {
 				    with (obj_susie)
@@ -621,14 +632,6 @@ function scr_game_text(_text_id)
 				        anim_loop = false;
 				    }
 				}, 1, global.page_number - 1);
-			scr_text("* Your time is over, Lightner.", "king", 0);
-			scr_text("* Your world is long overdue for a change of scenery.", "king", 5);
-			scr_text("* Or, in more definitive terms, a blanket of shadow.", "king", 4);
-			scr_text("* King, please...|* You don't need to do this...", "ralsei", 34);
-			scr_text("* Everyone is happy here...|* Lancer is happy here...", "ralsei", 35);
-			scr_text("* Why do you want to destroy everything we've built here...?", "ralsei", 41);
-			scr_text("* Before you jump to dull conclusions, Prince, not everyone is happy here.", "king", 5);
-			scr_text("* How selfish can you be?", "susie", 33);
 			scr_text("* Selfish?|* I am not the sole proprietor of unhappiness down here.", "king", 4);
 			scr_text("* Find us one other person.", "susie", 32);
 			scr_text("* ...", "king", 0);
@@ -645,11 +648,11 @@ function scr_game_text(_text_id)
 				    scr_set_sprite_keep_body(obj_king, spr_king_walk_right);
 				    
 				    scr_call_after_frames(function() {
-				        // same spot next to him as the first heal (fallback: down 48, left 42 from where she stands)
-				        var _off = variable_global_exists("susie_heal_offset") ? global.susie_heal_offset : undefined;
-				        var _sf  = scr_get_feet(obj_susie);
-				        var _tx  = (_off != undefined) ? obj_ralsei.x + _off.dx : _sf.x - 42;
-				        var _ty  = (_off != undefined) ? obj_ralsei.y + _off.dy : _sf.y + 48;
+						// same spot next to his body as the first heal (fallback: just to his right)
+				        var _off = variable_global_exists("susie_heal_offset") ? global.susie_heal_offset : { dx: 44, dy: 6 };
+				        var _rb  = scr_get_body(obj_ralsei);
+				        var _tx  = _rb.x + _off.dx;
+				        var _ty  = _rb.y + _off.dy;
 				        
 				        global.susie_heal_busy = true; // the run-off waits on this, even during the walk over
 				        global.susie_heal_then = undefined;
