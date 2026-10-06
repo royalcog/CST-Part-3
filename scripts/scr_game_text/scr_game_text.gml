@@ -537,7 +537,7 @@ function scr_game_text(_text_id)
 			
 				// back to the stall fight: Knight gets re-spawned while it's still black,
 				// and its setup rebuilds the battle exactly how it was left
-				scr_fade_warp_with_music(rm_one, 240, noone, 1, 1000, 500, 0, [
+				scr_fade_warp_with_music(rm_one, 360, noone, 1, 1000, 500, 0, [
 				    scr_make_warp_spawn(obj_knight, 0, 0, "Instances", function(_k) {
 				        scr_ralsei_battle_restore(_k);
 				    })
@@ -579,7 +579,6 @@ function scr_game_text(_text_id)
 				            scr_swoon(spr_roark_slash_susie_2, 180, function()
 				            {
 								scr_set_sprite_keep_feet(obj_susie, spr_susie_landed);
-				                scr_swoon_fall_sounds();
 				                scr_swoon_fall_sounds();
 				                scr_camera_shake(4, 20);
 				                global.cutscene_lock = false;
