@@ -286,6 +286,10 @@ function scr_game_text(_text_id)
 				
 				// heal, with the charge fading in
 				scr_custom_call_after_textbox_delayed(function() {
+				    // remember where her feet were next to downed Ralsei, so the second heal lines up the same
+				    var _sf = scr_get_feet(obj_susie);
+				    global.susie_heal_offset = { dx: _sf.x - obj_ralsei.x, dy: _sf.y - obj_ralsei.y };
+				    
 				    with (obj_susie)
 				    {
 				        sprite_index = spr_susie_heal;
@@ -602,6 +606,83 @@ function scr_game_text(_text_id)
 				    if (!instance_exists(obj_knight)) { global.cutscene_lock = false; exit; }
 				    obj_knight.on_exit = function() { global.cutscene_lock = false; };
 				    scr_knight_to_ball();
+				}, 1);
+		break;
+		
+		case "self_26":
+			scr_text("* D-Damn it...", "susie", 31);
+				// she gets back up (anim plays once, holds on the last frame)
+				scr_call_on_page(function() {
+				    with (obj_susie)
+				    {
+				        sprite_index = spr_susie_getup;
+				        image_index = 0;
+				        image_speed = 1;
+				        anim_loop = false;
+				    }
+				}, 1, global.page_number - 1);
+			scr_text("* Your time is over, Lightner.", "king", 0);
+			scr_text("* Your world is long overdue for a change of scenery.", "king", 5);
+			scr_text("* Or, in more definitive terms, a blanket of shadow.", "king", 4);
+			scr_text("* King, please...|* You don't need to do this...", "ralsei", 34);
+			scr_text("* Everyone is happy here...|* Lancer is happy here...", "ralsei", 35);
+			scr_text("* Why do you want to destroy everything we've built here...?", "ralsei", 41);
+			scr_text("* Before you jump to dull conclusions, Prince, not everyone is happy here.", "king", 5);
+			scr_text("* How selfish can you be?", "susie", 33);
+			scr_text("* Selfish?|* I am not the sole proprietor of unhappiness down here.", "king", 4);
+			scr_text("* Find us one other person.", "susie", 32);
+			scr_text("* ...", "king", 0);
+			scr_text("* Cat got your tongue, King", "susie", 34);
+				scr_text_cutoff_skip(27);
+			scr_text("* Quiet.", "king", 0);
+			scr_text("* Permit me time to think.", "king", 5);
+			scr_text("* You...", "ralsei", 44);
+			scr_text("* ...", "susie", 31);
+			scr_text("* Lancer?", "susie", 42);
+			scr_text("* Lancer...", "king", 2);
+				// King turns around to look -> Susie slips over to Ralsei and heals him
+				scr_call_on_page(function() {
+				    scr_set_sprite_keep_body(obj_king, spr_king_walk_right);
+				    
+				    scr_call_after_frames(function() {
+				        // same spot next to him as the first heal (fallback: down 48, left 42 from where she stands)
+				        var _off = variable_global_exists("susie_heal_offset") ? global.susie_heal_offset : undefined;
+				        var _sf  = scr_get_feet(obj_susie);
+				        var _tx  = (_off != undefined) ? obj_ralsei.x + _off.dx : _sf.x - 42;
+				        var _ty  = (_off != undefined) ? obj_ralsei.y + _off.dy : _sf.y + 48;
+				        
+				        global.susie_heal_busy = true; // the run-off waits on this, even during the walk over
+				        global.susie_heal_then = undefined;
+				        scr_walk_feet_to(obj_susie,
+				            spr_susie_walk_left_upset, spr_susie_walk_right_upset,
+				            spr_susie_walk_up, spr_susie_walk_down_upset,
+				            _tx, _ty, 3.2,
+				            function() { scr_susie_heal_ralsei(global.susie_heal_then); });
+				    }, 20);
+				}, 1, global.page_number - 1);
+			scr_text("* C'mon, dude.", "susie", 30);
+			
+				global.cutscene_lock = true; // until they're both gone
+				
+				// both run off left — waits for the heal to finish if it's still going
+				scr_custom_call_after_textbox_delayed(function()
+				{
+				    var _run = function()
+				    {
+				        scr_run_off_left([
+				            { obj: obj_susie,  sprite: spr_susie_walk_left_upset },
+				            { obj: obj_ralsei, sprite: spr_ralsei_walk_left_neutral }
+				        ], 4, function() { global.cutscene_lock = false; });
+				    };
+				    
+				    if (variable_global_exists("susie_heal_busy") && global.susie_heal_busy)
+				    {
+				        global.susie_heal_then = _run;
+				    }
+				    else
+				    {
+				        _run();
+				    }
 				}, 1);
 		break;
 		

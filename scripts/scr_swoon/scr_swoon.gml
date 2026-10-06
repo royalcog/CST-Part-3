@@ -129,3 +129,136 @@ function scr_stop_sounds(_sounds)
         audio_stop_sound(_sounds[i]);
     }
 }
+
+// ===================== SUSIE HEALS RALSEI / RUNNING OFF =====================
+
+/// walks _obj so its feet land on (_fx, _fy): horizontal leg first, then vertical.
+/// _px = pixels per frame. calls _on_done once it's standing exactly on the spot.
+function scr_walk_feet_to(_obj, _spr_left, _spr_right, _spr_up, _spr_down, _fx, _fy, _px, _on_done = undefined)
+{
+    if (!instance_exists(_obj)) { if (_on_done != undefined) _on_done(); exit; }
+
+    var _f  = scr_get_feet(_obj);
+    var _dx = _fx - _f.x;
+    var _dy = _fy - _f.y;
+    var _hdur = (abs(_dx) >= 1) ? ceil(abs(_dx) / _px) : 0;
+    var _vdur = (abs(_dy) >= 1) ? ceil(abs(_dy) / _px) : 0;
+
+    var _ctx = {
+        obj: _obj, fx: _fx, fy: _fy, done: _on_done,
+        vspr: (_dy < 0) ? _spr_up : _spr_down, vstep: (_vdur > 0) ? _dy / _vdur : 0, vdur: _vdur
+    };
+
+    // vertical leg, then snap onto the exact spot
+    var _second = method(_ctx, function()
+    {
+        if (vdur > 0) scr_char_move_now(obj, vspr, true, 0, vstep, 1, vdur);
+        scr_call_after_frames(method(self, function()
+        {
+            if (instance_exists(obj))
+            {
+                var _p = scr_feet_to_xy(obj, obj.sprite_index, fx, fy);
+                obj.x = _p.x;
+                obj.y = _p.y;
+                obj.image_index = 0;
+                obj.image_speed = 0;
+                obj.anim_loop = false;
+            }
+            if (done != undefined) done();
+        }), vdur + 2);
+    });
+
+    if (_hdur > 0)
+    {
+        scr_char_move_now(_obj, (_dx < 0) ? _spr_left : _spr_right, true, _dx / _hdur, 0, 1, _hdur);
+        scr_call_after_frames(_second, _hdur + 1);
+    }
+    else
+    {
+        _second();
+    }
+}
+
+/// Susie's heal on downed Ralsei (same beats as self_15): charge fades in, heal lands on
+/// frame 14 -> snd_heal + green flash -> Ralsei gets up shocked, Susie heal_end -> left_neutral.
+/// global.susie_heal_busy is true the whole time; global.susie_heal_then (if set) runs when it's done.
+function scr_susie_heal_ralsei(_on_done = undefined)
+{
+    global.susie_heal_busy = true;
+    global.susie_heal_then = _on_done;
+
+    with (obj_susie)
+    {
+        sprite_index = spr_susie_heal;
+        image_index = 0;
+        image_speed = 1;
+        anim_loop = false; // freezes on her last frame
+        charge_snd = scr_audio_fade_in(snd_charge, 1000, 1, true);
+    }
+
+    scr_call_on_anim_frame(obj_susie, spr_susie_heal, 14, function()
+    {
+        audio_play_sound(snd_heal, 1, false);
+
+        var _f = instance_create_depth(0, 0, obj_ralsei.depth - 1, obj_heal_flash);
+        _f.target = obj_ralsei;
+        _f.duration = 60;
+        _f.on_finish = function()
+        {
+            // Ralsei gets up (his body sits ~21px left of center in spr_ralsei_defeat)
+            scr_set_sprite_keep_feet(obj_ralsei, spr_ralsei_shocked);
+            obj_ralsei.x -= 21 * obj_ralsei.image_xscale;
+
+            with (obj_susie)
+            {
+                sprite_index = spr_susie_heal_end;
+                image_index = 0;
+                image_speed = 1;
+                anim_loop = false;
+                audio_sound_gain(charge_snd, 0, 400);
+            }
+            scr_call_after_frames(function() { audio_stop_sound(obj_susie.charge_snd); }, 24);
+
+            scr_call_after_frames(function()
+            {
+                with (obj_susie)
+                {
+                    sprite_index = spr_susie_left_neutral;
+                    image_index = 0;
+                    image_speed = 0;
+                    anim_loop = true;
+                }
+                global.susie_heal_busy = false;
+                var _cb = global.susie_heal_then;
+                global.susie_heal_then = undefined;
+                if (_cb != undefined) _cb();
+            }, 40);
+        };
+    });
+}
+
+/// everyone listed runs left until fully offscreen, together. _runners = [ { obj, sprite }, ... ]
+/// _px = pixels per frame. _on_done runs once the last one is gone.
+function scr_run_off_left(_runners, _px, _on_done = undefined)
+{
+    var _cam_x = camera_get_view_x(view_camera[0]);
+    var _longest = 0;
+
+    for (var i = 0; i < array_length(_runners); i++)
+    {
+        var _r = _runners[i];
+        if (!instance_exists(_r.obj)) continue;
+
+        // where the run sprite's right edge will be once it's swapped in (feet stay put)
+        var _f  = scr_get_feet(_r.obj);
+        var _p  = scr_feet_to_xy(_r.obj, _r.sprite, _f.x, _f.y);
+        var _xs = _r.obj.image_xscale;
+        var _right = _p.x + (sprite_get_bbox_right(_r.sprite) + 1 - sprite_get_xoffset(_r.sprite)) * _xs;
+
+        var _dur = ceil((_right - _cam_x + 8) / _px);
+        _longest = max(_longest, _dur);
+        scr_char_move_now(_r.obj, _r.sprite, true, -_px, 0, 1, _dur);
+    }
+
+    if (_on_done != undefined) scr_call_after_frames(_on_done, _longest + 2);
+}
