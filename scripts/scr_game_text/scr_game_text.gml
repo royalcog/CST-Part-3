@@ -633,6 +633,7 @@ function scr_game_text(_text_id)
 				}, 1, global.page_number - 1);
 			scr_text("* Selfish?|* I am not the sole proprietor of unhappiness down here.", "king", 4);
 			scr_text("* Find us one other person.", "susie", 32);
+				scr_obj_sprite_on_page(obj_susie, spr_susie_walk_right_upset, false);
 			scr_text("* ...", "king", 0);
 			scr_text("* Cat got your tongue, King", "susie", 34);
 				scr_text_cutoff_skip(27);
@@ -686,6 +687,12 @@ function scr_game_text(_text_id)
 				        _run();
 				    }
 				}, 1);
+		break;
+		
+		case "self_27":
+			scr_text("* ...", "king", 6);
+				scr_obj_sprite_on_page(obj_king, spr_king_walk_left, false);
+			scr_text("* Damn it.", "king", 5);
 		break;
 		
 		
